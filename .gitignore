@@ -1,0 +1,29 @@
+
+# Archivos generados por el sistema
+.DS_Store
+Thumbs.db
+
+# Archivos y carpetas de compilación
+/target/
+/out/
+
+# Configuraciones específicas de IDE (por ejemplo, IntelliJ IDEA, Eclipse)
+.idea/
+.classpath
+.project
+.settings/
+
+# Archivos de log
+*.log
+
+# Archivos de dependencias de Maven/Gradle
+/mvnw
+/mvnw.cmd
+.mvn/
+/build/
+*.jar
+*.war
+*.ear
+
+# Archivos de configuración del servidor
+.env
