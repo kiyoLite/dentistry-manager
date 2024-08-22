@@ -6,6 +6,7 @@ package Persistence.DAO.Implementation;
 
 import Persistence.DAO.Interface.DentistDAO;
 import Persistence.Entities.Dentist;
+import Persistence.Entities.Shift;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
@@ -41,8 +42,11 @@ public class DentistDAOImp implements DentistDAO {
     }
 
     @Override
-    public Dentist getById(long enittyId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Dentist getById(long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Dentist entity = session.find(Dentist.class, id);
+        session.close();
+        return entity;
     }
 
     @Override

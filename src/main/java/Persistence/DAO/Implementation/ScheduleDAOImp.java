@@ -5,6 +5,7 @@
 package Persistence.DAO.Implementation;
 
 import Persistence.DAO.Interface.ScheduleDAO;
+import Persistence.Entities.Person;
 import Persistence.Entities.Schedule;
 import Persistence.HibernateUtil;
 import java.util.List;
@@ -19,17 +20,15 @@ public class ScheduleDAOImp implements ScheduleDAO {
 
     @Override
     public Schedule create(Schedule entity) {
-         Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
             session.getTransaction().begin();
             session.save(entity);
             session.getTransaction().commit();
-        }
-        catch(PersistenceException e){
+        } catch (PersistenceException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             session.close();
             return entity;
         }
@@ -41,8 +40,11 @@ public class ScheduleDAOImp implements ScheduleDAO {
     }
 
     @Override
-    public Schedule getById(long enittyId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Schedule getById(long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Schedule entity = session.find(Schedule.class, id);
+        session.close();
+        return entity;
     }
 
     @Override
@@ -54,5 +56,5 @@ public class ScheduleDAOImp implements ScheduleDAO {
     public boolean delete(long entityId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

@@ -6,6 +6,7 @@ package Persistence.DAO.Implementation;
 
 import Persistence.DAO.Interface.PatientDAO;
 import Persistence.Entities.Patient;
+import Persistence.Entities.Shift;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
@@ -19,17 +20,15 @@ public class PatientDAOImp implements PatientDAO {
 
     @Override
     public Patient create(Patient entity) {
-         Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
             session.getTransaction().begin();
             session.save(entity);
             session.getTransaction().commit();
-        }
-        catch(PersistenceException e){
+        } catch (PersistenceException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             session.close();
             return entity;
         }
@@ -41,8 +40,11 @@ public class PatientDAOImp implements PatientDAO {
     }
 
     @Override
-    public Patient getById(long enittyId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Patient getById(long id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Patient entity = session.find(Patient.class, id);
+        session.close();
+        return entity;
     }
 
     @Override
@@ -54,5 +56,5 @@ public class PatientDAOImp implements PatientDAO {
     public boolean delete(long entityId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-        
+
 }

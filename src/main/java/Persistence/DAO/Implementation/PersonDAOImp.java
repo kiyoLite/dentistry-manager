@@ -54,7 +54,10 @@ public class PersonDAOImp implements PersonDAO {
     }
     @Override
     public Person getById(long id){
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Person entity = session.find(Person.class, id);
+        session.close();
+        return entity;
     }
 
 }
