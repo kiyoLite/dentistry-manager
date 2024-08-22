@@ -7,7 +7,9 @@ package Persistence.DAO.ImplementationTest;
 import Persistence.DAO.Implementation.PersonDAOImp;
 import Persistence.Entities.Person;
 import java.util.Calendar;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /**
@@ -15,9 +17,20 @@ import org.junit.jupiter.api.Test;
  * @author soyky
  */
 public class PersonDAOImpTest {
+    Person personDB;
+    
+    @BeforeEach
+    public void setUp(){
+        personDB = new Person("name1", "name2", Calendar.getInstance(), "email");
+        
+    }
+    @AfterEach
+    public void tearDown(){
+        personDB = null;
+    }
+    
     @Test
     public void create() {
-        Person personDB = new Person("name1", "name2", Calendar.getInstance(), "email");
         Assertions.assertEquals(0, personDB.getId());
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
