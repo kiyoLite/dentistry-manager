@@ -20,6 +20,11 @@
 
     <!-- entities -->
     <mapping class="Persistence.Entities.Person"/>
+    <mapping class="Persistence.Entities.Dentist"/>
+    <mapping class="Persistence.Entities.Login"/>
+    <mapping class="Persistence.Entities.Patient"/>
+    <mapping class="Persistence.Entities.Schedule"/>
+    <mapping class="Persistence.Entities.Shift"/>
   
 
   </session-factory>
