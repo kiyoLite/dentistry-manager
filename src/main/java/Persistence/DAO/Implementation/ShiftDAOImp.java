@@ -6,7 +6,10 @@ package Persistence.DAO.Implementation;
 
 import Persistence.DAO.Interface.ShiftDAO;
 import Persistence.Entities.Shift;
+import Persistence.HibernateUtil;
 import java.util.List;
+import javax.persistence.PersistenceException;
+import org.hibernate.Session;
 
 /**
  *
@@ -16,8 +19,22 @@ public class ShiftDAOImp implements ShiftDAO{
 
     @Override
     public Shift create(Shift entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try{
+            session.getTransaction().begin();
+            session.save(entity);
+            session.getTransaction().commit();
+        }
+        catch(PersistenceException e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        finally{
+            session.close();
+            return entity;
+        }
     }
+    
 
     @Override
     public List<Shift> getAll() {
