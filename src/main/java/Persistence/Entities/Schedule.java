@@ -5,14 +5,27 @@
 package Persistence.Entities;
 
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.GenerationType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author soyky
  */
+@Entity
+@Table(name = "schedules")
 public class Schedule implements EntityDB{
+    @Id
+    @GeneratedValue(strategy =GenerationType.IDENTITY )
     private long id;
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar startSchedule ;
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar endScehdule;
     public Schedule(){}
     public Schedule(Calendar startSchedule, Calendar endSchedule){

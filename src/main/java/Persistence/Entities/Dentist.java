@@ -6,16 +6,33 @@ package Persistence.Entities;
 
 import Persistence.Enums.Specialization;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 /**
  *
  * @author soyky
  */
+@Entity
+@Table(name ="dentists")
 public class Dentist implements EntityDB{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Enumerated(EnumType.STRING)
     private Specialization dentistEspecialization;
+    @Transient
     private List<Shift> shifts;
+    @OneToOne
     private Schedule schedule;
+    @OneToOne
     private Person personalData;
     public Dentist(){}
 

@@ -5,15 +5,30 @@
 package Persistence.Entities;
 
 import java.util.Calendar;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  *
  * @author soyky
  */
+@Entity
+@Table(name = "shifts")
 public class Shift implements EntityDB{
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @OneToOne
     private Patient patinet;
+    @OneToOne
     private Dentist dentist;
+    @Temporal(TemporalType.TIMESTAMP)
     private Calendar scheduling;
     private String reason;
     private int price;
