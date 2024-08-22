@@ -24,7 +24,7 @@ public class Person  implements EntityDB{
     @Column(name="person_id")
     private long id;
     private String firstName;
-    private String LastName;
+    private String lastName;
     @Temporal(TemporalType.DATE)
     private Calendar birthDate;
     private String email;
@@ -34,7 +34,7 @@ public class Person  implements EntityDB{
     public Person(){};
     public Person(String firstName, String LastName, Calendar birthDate,String email){
         this.firstName = firstName;
-        this.LastName = LastName;
+        this.lastName = LastName;
         this.birthDate = birthDate;
         this.email = email;
     };
@@ -44,7 +44,7 @@ public class Person  implements EntityDB{
     }
 
     public String getLastName() {
-        return LastName;
+        return lastName;
     }
 
     public Calendar getBirthDate() {
@@ -63,7 +63,7 @@ public class Person  implements EntityDB{
     }
 
     public void setLastName(String LastName) {
-        this.LastName = LastName;
+        this.lastName = LastName;
     }
 
     public void setBirthDate(Calendar birthDate) {
