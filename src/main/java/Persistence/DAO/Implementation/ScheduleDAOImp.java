@@ -4,10 +4,39 @@
  */
 package Persistence.DAO.Implementation;
 
+import Persistence.DAO.Interface.ScheduleDAO;
+import Persistence.Entities.Schedule;
+import java.util.List;
+
 /**
  *
  * @author soyky
  */
-public class ScheduleDAOImp {
+public class ScheduleDAOImp implements ScheduleDAO {
+
+    @Override
+    public Schedule create(Schedule entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public List<Schedule> getAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Schedule getById(long enittyId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public Schedule update(Schedule entity) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public boolean delete(long entityId) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
 }
