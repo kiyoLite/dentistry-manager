@@ -7,18 +7,28 @@ package Persistence.DAO.ImplementationTest;
 import Persistence.DAO.Implementation.LoginDAOImp;
 import org.junit.jupiter.api.Test;
 import Persistence.Entities.Login;
-import Persistence.HibernateUtil;
-import org.hibernate.Session;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 
 /**
  *
  * @author soyky
  */
 public class LoginDAOImpTest {
+    Login loginDB ;
+    @BeforeEach
+    public void setUp(){
+         loginDB = new Login("userProof","passwordProof");
+        
+    }
+    @AfterEach
+    public void tearDown(){
+        loginDB = null;
+    }
     @Test
     public void create(){
-        Login loginDB = new Login("userProof","passwordProof");
+        Assertions.assertEquals(0, loginDB.getId());
         LoginDAOImp crud = new LoginDAOImp(); 
         crud.create(loginDB);
         Assertions.assertNotEquals(0, loginDB.getId(),"id have to be different to long default value");  

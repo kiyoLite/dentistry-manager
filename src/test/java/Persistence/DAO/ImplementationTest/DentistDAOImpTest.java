@@ -8,7 +8,9 @@ import Persistence.Entities.Person;
 import Persistence.Entities.Schedule;
 import Persistence.Enums.Specialization;
 import java.util.Calendar;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /*
@@ -21,22 +23,37 @@ import org.junit.jupiter.api.Test;
  */
 public class DentistDAOImpTest {
 
+    Schedule scheduleDB;
+    Person personDB;
+    Dentist dentistDB;
+
+    @BeforeEach
+    public void setUp() {
+        scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
+        personDB = new Person("name1", "name2", Calendar.getInstance(), "email");
+        dentistDB = new Dentist(Specialization.MAXILLOFACIAL, scheduleDB, personDB);
+
+    }
+
+    @AfterEach
+    public void tearDown() {
+        scheduleDB = null;
+        personDB = null;
+        dentistDB = null;
+    }
+
     @Test
     public void create() {
-        Person personDB = new Person("name1", "name2", Calendar.getInstance(), "email");
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
 
-        Schedule scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
         ScheduleDAOImp crudSchedule = new ScheduleDAOImp();
         crudSchedule.create(scheduleDB);
 
-        Dentist dentistDB = new Dentist(Specialization.MAXILLOFACIAL, scheduleDB, personDB);
         Assertions.assertEquals(0, dentistDB.getId());
         DentistDAOImp crudDentist = new DentistDAOImp();
         crudDentist.create(dentistDB);
         Assertions.assertNotEquals(0, dentistDB.getId(), "id have to be different to long default value");
-        
 
     }
 }
