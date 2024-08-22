@@ -36,9 +36,8 @@ public class Dentist implements EntityDB{
     private Person personalData;
     public Dentist(){}
 
-    public Dentist(Specialization dentistEspecialization, List<Shift> shifts, Schedule schedule, Person personalData) {
+    public Dentist(Specialization dentistEspecialization, Schedule schedule, Person personalData) {
         this.dentistEspecialization = dentistEspecialization;
-        this.shifts = shifts;
         this.schedule = schedule;
         this.personalData = personalData;
     }
