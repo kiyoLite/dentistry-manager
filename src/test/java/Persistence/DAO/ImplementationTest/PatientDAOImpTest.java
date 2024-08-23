@@ -26,8 +26,8 @@ public class PatientDAOImpTest {
 
     @BeforeEach
     public void setUp() {
-        patientDB = new Patient("disability", InsuranceProvider.HUMANA, personDB);
         personDB = new Person("name1", "name2", Calendar.getInstance(), "email");
+        patientDB = new Patient("disability", InsuranceProvider.HUMANA, personDB);
 
     }
 
@@ -46,6 +46,20 @@ public class PatientDAOImpTest {
         PatientDAOImp crudPatient = new PatientDAOImp();
         crudPatient.create(patientDB);
         Assertions.assertNotEquals(0, personDB.getId(), "id have to be different to long default value");
+    }
+    
+    @Test
+    public void  getById(){
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(personDB);
+
+        Assertions.assertEquals(0, patientDB.getId());
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+        Patient recoveredPatient = crudPatient.getById(patientDB.getId());
+        Assertions.assertEquals(patientDB.getDisability(), recoveredPatient.getDisability());
+        Assertions.assertEquals(patientDB.getInsuranceProvider(), recoveredPatient.getInsuranceProvider());
+        Assertions.assertEquals(patientDB.getPersonalData().getId(), recoveredPatient.getPersonalData().getId());
     }
 
 }

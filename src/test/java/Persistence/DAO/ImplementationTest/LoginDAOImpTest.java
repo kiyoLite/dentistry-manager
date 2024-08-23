@@ -33,4 +33,13 @@ public class LoginDAOImpTest {
         crud.create(loginDB);
         Assertions.assertNotEquals(0, loginDB.getId(),"id have to be different to long default value");  
     }
+    
+    @Test
+    public void getById(){
+        LoginDAOImp crudLogin = new LoginDAOImp(); 
+        crudLogin.create(loginDB);
+        Login recoveredLogin = crudLogin.getById(loginDB.getId());
+        Assertions.assertEquals(loginDB.getUserName(), recoveredLogin.getUserName());
+        Assertions.assertEquals(loginDB.getPassword(), recoveredLogin.getPassword());
+    }
 }

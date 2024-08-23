@@ -22,7 +22,7 @@ public class ScheduleDAOImpTest {
 
     @BeforeEach
     public void setUp() {
-        Schedule scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
+         scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
 
     }
     @AfterEach
@@ -35,5 +35,14 @@ public class ScheduleDAOImpTest {
         ScheduleDAOImp crud = new ScheduleDAOImp();
         crud.create(scheduleDB);
         Assertions.assertNotEquals(0, scheduleDB.getId(), "id have to be different to long default value");
+    }
+    
+    @Test
+    public void getById(){
+         ScheduleDAOImp crud = new ScheduleDAOImp();
+        crud.create(scheduleDB);
+        Schedule recoveredSchedule = crud.getById(scheduleDB.getId());
+        Assertions.assertEquals(scheduleDB.getStartSchedule(), recoveredSchedule.getStartSchedule());
+        Assertions.assertEquals(scheduleDB.getEndScehdule(), recoveredSchedule.getEndScehdule());
     }
 }

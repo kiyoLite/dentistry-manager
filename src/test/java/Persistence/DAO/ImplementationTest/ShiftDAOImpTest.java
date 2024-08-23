@@ -75,4 +75,31 @@ public class ShiftDAOImpTest {
         Assertions.assertNotEquals(0, shiftDB.getId(), "id have to be different to long default value");
 
     }
+    
+    @Test
+    public void getById(){
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(person1DB);
+        crudPerson.create(person2DB);
+
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+
+        ScheduleDAOImp crudSchedule = new ScheduleDAOImp();
+        crudSchedule.create(scheduleDB);
+
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+
+        Assertions.assertEquals(0, shiftDB.getId());
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        
+        Shift recoveredShift = crudShift.getById(shiftDB.getId());
+        Assertions.assertEquals(shiftDB.getPatinet().getId(), recoveredShift.getPatinet().getId());
+        Assertions.assertEquals(shiftDB.getDentist().getId(), recoveredShift.getDentist().getId());
+        Assertions.assertEquals(shiftDB.getScheduling(), recoveredShift.getScheduling());
+        Assertions.assertEquals(shiftDB.getReason(), recoveredShift.getReason() );
+        Assertions.assertEquals(shiftDB.getPrice(), recoveredShift.getPrice());
+    }
 }
