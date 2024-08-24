@@ -52,4 +52,15 @@ public class PersonDAOImpTest {
         Assertions.assertEquals(birtDatePersonDB,birtDateRecoveredPerson);
         Assertions.assertEquals(personDB.getEmail(), recoveredPerson.getEmail());
     }
+    
+    @Test
+    public void deleteById(){
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(personDB);
+        long personId = personDB.getId();
+        boolean WasDeleted = crudPerson.deleteById(personId);
+        Assertions.assertTrue(WasDeleted);
+        Person deletedPerson = crudPerson.getById(personId);
+        Assertions.assertNull(deletedPerson);
+    }
 }

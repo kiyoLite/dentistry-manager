@@ -16,30 +16,45 @@ import org.junit.jupiter.api.BeforeEach;
  * @author soyky
  */
 public class LoginDAOImpTest {
-    Login loginDB ;
+
+    Login loginDB;
+
     @BeforeEach
-    public void setUp(){
-         loginDB = new Login("userProof","passwordProof");
-        
+    public void setUp() {
+        loginDB = new Login("userProof", "passwordProof");
+
     }
+
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         loginDB = null;
     }
+
     @Test
-    public void create(){
+    public void create() {
         Assertions.assertEquals(0, loginDB.getId());
-        LoginDAOImp crud = new LoginDAOImp(); 
+        LoginDAOImp crud = new LoginDAOImp();
         crud.create(loginDB);
-        Assertions.assertNotEquals(0, loginDB.getId(),"id have to be different to long default value");  
+        Assertions.assertNotEquals(0, loginDB.getId(), "id have to be different to long default value");
     }
-    
+
     @Test
-    public void getById(){
-        LoginDAOImp crudLogin = new LoginDAOImp(); 
+    public void getById() {
+        LoginDAOImp crudLogin = new LoginDAOImp();
         crudLogin.create(loginDB);
         Login recoveredLogin = crudLogin.getById(loginDB.getId());
         Assertions.assertEquals(loginDB.getUserName(), recoveredLogin.getUserName());
         Assertions.assertEquals(loginDB.getPassword(), recoveredLogin.getPassword());
+    }
+
+    @Test
+    public void deleteById() {
+        LoginDAOImp crudLogin = new LoginDAOImp();
+        crudLogin.create(loginDB);
+        long loginId = loginDB.getId();
+        boolean wasDeleted = crudLogin.deleteById(loginId);
+        Assertions.assertTrue(wasDeleted);
+        Login deletedLogin = crudLogin.getById(loginId);
+        Assertions.assertNull(deletedLogin);
     }
 }

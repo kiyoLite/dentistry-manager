@@ -45,4 +45,15 @@ public class ScheduleDAOImpTest {
         Assertions.assertEquals(scheduleDB.getStartSchedule(), recoveredSchedule.getStartSchedule());
         Assertions.assertEquals(scheduleDB.getEndScehdule(), recoveredSchedule.getEndScehdule());
     }
+    
+    @Test
+    public void deleteById(){
+        ScheduleDAOImp crud = new ScheduleDAOImp();
+        crud.create(scheduleDB);
+        long scheduleId = scheduleDB.getId();
+        boolean wasDeleted = crud.deleteById(scheduleId);
+        Assertions.assertTrue(wasDeleted);
+        Schedule deletedSchedule = crud.getById(scheduleId);
+        Assertions.assertNull(deletedSchedule);
+    }
 }

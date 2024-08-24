@@ -56,8 +56,25 @@ public class DentistDAOImpTest {
         Assertions.assertNotEquals(0, dentistDB.getId(), "id have to be different to long default value");
 
     }
+
     @Test
-    public void getById(){
+    public void getById() {
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(personDB);
+        ScheduleDAOImp crudSchedule = new ScheduleDAOImp();
+        crudSchedule.create(scheduleDB);
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+
+        Dentist recoveredDentist = crudDentist.getById(dentistDB.getId());
+
+        Assertions.assertEquals(dentistDB.getDentistEspecialization(), recoveredDentist.getDentistEspecialization());
+        Assertions.assertEquals(dentistDB.getPersonalData().getId(), recoveredDentist.getPersonalData().getId());
+        Assertions.assertEquals(dentistDB.getSchedule().getId(), recoveredDentist.getSchedule().getId());
+    }
+
+    @Test
+    public void deleteById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
         ScheduleDAOImp crudSchedule = new ScheduleDAOImp();
@@ -65,10 +82,11 @@ public class DentistDAOImpTest {
         DentistDAOImp crudDentist = new DentistDAOImp();
         crudDentist.create(dentistDB);
         
-        Dentist recoveredDentist = crudDentist.getById(dentistDB.getId());
-        
-        Assertions.assertEquals(dentistDB.getDentistEspecialization() , recoveredDentist.getDentistEspecialization());
-        Assertions.assertEquals(dentistDB.getPersonalData().getId() , recoveredDentist.getPersonalData().getId());
-        Assertions.assertEquals(dentistDB.getSchedule().getId() , recoveredDentist.getSchedule().getId());
+        long dentistId = dentistDB.getId();
+        boolean wasDeleted = crudDentist.deleteById(dentistId);
+        Assertions.assertTrue(wasDeleted);
+        Dentist deletedDentist = crudDentist.getById(dentistId);
+        Assertions.assertNull(deletedDentist);
+
     }
 }

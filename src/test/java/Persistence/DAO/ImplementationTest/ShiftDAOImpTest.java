@@ -44,6 +44,7 @@ public class ShiftDAOImpTest {
         dentistDB = new Dentist(Specialization.MAXILLOFACIAL, scheduleDB, person2DB);
         shiftDB = new Shift(patientDB, dentistDB, Calendar.getInstance(), "reason", 0);
     }
+
     @AfterEach
     public void tearDown() {
         person1DB = null;
@@ -75,9 +76,9 @@ public class ShiftDAOImpTest {
         Assertions.assertNotEquals(0, shiftDB.getId(), "id have to be different to long default value");
 
     }
-    
+
     @Test
-    public void getById(){
+    public void getById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(person1DB);
         crudPerson.create(person2DB);
@@ -94,12 +95,36 @@ public class ShiftDAOImpTest {
         Assertions.assertEquals(0, shiftDB.getId());
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
-        
+
         Shift recoveredShift = crudShift.getById(shiftDB.getId());
         Assertions.assertEquals(shiftDB.getPatinet().getId(), recoveredShift.getPatinet().getId());
         Assertions.assertEquals(shiftDB.getDentist().getId(), recoveredShift.getDentist().getId());
         Assertions.assertEquals(shiftDB.getScheduling(), recoveredShift.getScheduling());
-        Assertions.assertEquals(shiftDB.getReason(), recoveredShift.getReason() );
+        Assertions.assertEquals(shiftDB.getReason(), recoveredShift.getReason());
         Assertions.assertEquals(shiftDB.getPrice(), recoveredShift.getPrice());
+    }
+
+    @Test
+    public void deleteById() {
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(person1DB);
+        crudPerson.create(person2DB);
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+        ScheduleDAOImp crudSchedule = new ScheduleDAOImp();
+        crudSchedule.create(scheduleDB);
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+        Assertions.assertEquals(0, shiftDB.getId());
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        
+        
+        long shiftId = shiftDB.getId();
+        boolean wasDeleted = crudShift.deleteById(shiftId);
+        Assertions.assertTrue(wasDeleted);
+        Shift deletedShift = crudShift.getById(shiftId);
+        Assertions.assertNull(deletedShift);
+        
     }
 }

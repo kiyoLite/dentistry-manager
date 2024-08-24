@@ -47,9 +47,9 @@ public class PatientDAOImpTest {
         crudPatient.create(patientDB);
         Assertions.assertNotEquals(0, personDB.getId(), "id have to be different to long default value");
     }
-    
+
     @Test
-    public void  getById(){
+    public void getById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
 
@@ -60,6 +60,19 @@ public class PatientDAOImpTest {
         Assertions.assertEquals(patientDB.getDisability(), recoveredPatient.getDisability());
         Assertions.assertEquals(patientDB.getInsuranceProvider(), recoveredPatient.getInsuranceProvider());
         Assertions.assertEquals(patientDB.getPersonalData().getId(), recoveredPatient.getPersonalData().getId());
+    }
+
+    @Test
+    public void deleteById() {
+        PersonDAOImp crudPerson = new PersonDAOImp();
+        crudPerson.create(personDB);
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+        long patientId = patientDB.getId();
+        boolean wasDeleted = crudPatient.deleteById(patientId);
+        Assertions.assertTrue(wasDeleted);
+        Patient deletedPatient = crudPatient.getById(patientId);
+        Assertions.assertNull(deletedPatient);
     }
 
 }
