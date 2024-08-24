@@ -53,7 +53,7 @@ public class ShiftDAOImp implements ShiftDAO {
     }
 
     @Override
-    public boolean delete(long entityId) {
+    public boolean deleteById(long entityId) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

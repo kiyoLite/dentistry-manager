@@ -16,6 +16,6 @@ public interface DAOCRUD<T extends EntityDB> {
     public List<T> getAll ();
     public T getById(long enittyId);
     public T update(T entity);
-    public boolean delete(long entityId);
+    public boolean deleteById(long entityId);
     
 }

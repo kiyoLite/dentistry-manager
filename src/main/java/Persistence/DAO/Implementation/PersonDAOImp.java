@@ -49,7 +49,7 @@ public class PersonDAOImp implements PersonDAO {
     }
 
     @Override
-    public boolean delete(long entityId) {
+    public boolean deleteById(long entityId) {
         return true;
     }
     @Override
