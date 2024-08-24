@@ -56,7 +56,19 @@ public class DentistDAOImp implements DentistDAO {
 
     @Override
     public boolean deleteById(long entityId) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Dentist entity = getById(entityId);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            session.beginTransaction();
+            session.remove(entity);
+            session.getTransaction().commit();
+            return true;
+        } catch (IllegalArgumentException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        }
     }
     
 }

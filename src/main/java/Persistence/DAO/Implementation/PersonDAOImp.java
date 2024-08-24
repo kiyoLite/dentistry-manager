@@ -20,7 +20,6 @@ public class PersonDAOImp implements PersonDAO {
     public PersonDAOImp() {
     }
 
-    
     @Override
     public Person create(Person person) {
 
@@ -50,10 +49,24 @@ public class PersonDAOImp implements PersonDAO {
 
     @Override
     public boolean deleteById(long entityId) {
-        return true;
+        Person entity = getById(entityId);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+
+            session.beginTransaction();
+            session.remove(entity);
+            session.getTransaction().commit();
+            return true;
+        } catch (IllegalArgumentException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return false;
+        }
+
     }
+
     @Override
-    public Person getById(long id){
+    public Person getById(long id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Person entity = session.find(Person.class, id);
         session.close();
