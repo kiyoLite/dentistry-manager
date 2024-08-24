@@ -10,7 +10,12 @@ import Persistence.Entities.Shift;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -20,7 +25,21 @@ public class LoginDAOImp implements LoginDAO {
 
     @Override
     public boolean existLogin(String userName, String Password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody 
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        
+        CriteriaQuery criteria = builder.createQuery();
+        Root<Login> root = criteria.from(Login.class);
+        Predicate userNameFilter = builder.equal(root.get("userName"),userName );
+        Predicate passwordFilter = builder.equal(root.get("password"), Password);
+        criteria.select(root).where(builder.and(userNameFilter,passwordFilter));
+        
+        Query query = session.createQuery(criteria);
+        int quantityLogins = query.list().size();
+        return quantityLogins >= 1;
+        
+        
+        
     }
 
     @Override
