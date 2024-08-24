@@ -7,6 +7,7 @@ package Persistence.DAO.ImplementationTest;
 import Persistence.DAO.Implementation.LoginDAOImp;
 import org.junit.jupiter.api.Test;
 import Persistence.Entities.Login;
+import javax.validation.constraints.AssertFalse;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,5 +57,13 @@ public class LoginDAOImpTest {
         Assertions.assertTrue(wasDeleted);
         Login deletedLogin = crudLogin.getById(loginId);
         Assertions.assertNull(deletedLogin);
+    }
+    
+    @Test 
+    public void existLogin(){
+        LoginDAOImp crudLogin = new LoginDAOImp();
+        crudLogin.create(loginDB);
+        boolean existLogin = crudLogin.existLogin(loginDB.getUserName(), loginDB.getPassword());
+        Assertions.assertTrue(existLogin);
     }
 }
