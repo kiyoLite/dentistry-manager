@@ -56,7 +56,7 @@ public class ShiftDAOImpTest {
     }
 
     @Test
-    public void create() {
+    public void createManually() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(person1DB);
         crudPerson.create(person2DB);

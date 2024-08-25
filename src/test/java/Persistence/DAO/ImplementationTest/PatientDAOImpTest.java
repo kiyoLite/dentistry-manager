@@ -38,7 +38,7 @@ public class PatientDAOImpTest {
     }
 
     @Test
-    public void create() {
+    public void createManually() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
 

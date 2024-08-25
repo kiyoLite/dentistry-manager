@@ -58,8 +58,8 @@ public class LoginDAOImpTest {
         Login deletedLogin = crudLogin.getById(loginId);
         Assertions.assertNull(deletedLogin);
     }
-    
-    @Test 
+
+    @Test
     public void existLogin(){
         LoginDAOImp crudLogin = new LoginDAOImp();
         crudLogin.create(loginDB);
