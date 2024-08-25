@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -27,6 +29,7 @@ public class Patient implements EntityDB{
    @Enumerated(EnumType.STRING)
    private InsuranceProvider insuranceProvider;
    @OneToOne
+   @Cascade(CascadeType.SAVE_UPDATE)
    private Person personalData;
    
    public Patient(){};
