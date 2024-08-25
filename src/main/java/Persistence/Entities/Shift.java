@@ -13,6 +13,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -25,8 +27,10 @@ public class Shift implements EntityDB{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @OneToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Patient patinet;
     @OneToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Dentist dentist;
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar scheduling;

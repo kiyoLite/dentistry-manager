@@ -15,6 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 /**
  *
@@ -31,8 +33,10 @@ public class Dentist implements EntityDB{
     @Transient
     private List<Shift> shifts;
     @OneToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Schedule schedule;
     @OneToOne
+    @Cascade(CascadeType.SAVE_UPDATE)
     private Person personalData;
     public Dentist(){}
 
