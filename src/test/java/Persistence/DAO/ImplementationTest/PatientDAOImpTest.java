@@ -49,6 +49,14 @@ public class PatientDAOImpTest {
     }
 
     @Test
+    public void createAutomatically() {
+        Assertions.assertEquals(0, patientDB.getId());
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+        Assertions.assertNotEquals(0, personDB.getId(), "id have to be different to long default value");
+    }
+
+    @Test
     public void getById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);

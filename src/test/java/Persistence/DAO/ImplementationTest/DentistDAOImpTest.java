@@ -58,6 +58,14 @@ public class DentistDAOImpTest {
     }
 
     @Test
+    public void createAutomatically() {
+        Assertions.assertEquals(0, dentistDB.getId());
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+        Assertions.assertNotEquals(0, dentistDB.getId(), "id have to be different to long default value");
+    }
+
+    @Test
     public void getById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(personDB);
@@ -81,7 +89,7 @@ public class DentistDAOImpTest {
         crudSchedule.create(scheduleDB);
         DentistDAOImp crudDentist = new DentistDAOImp();
         crudDentist.create(dentistDB);
-        
+
         long dentistId = dentistDB.getId();
         boolean wasDeleted = crudDentist.deleteById(dentistId);
         Assertions.assertTrue(wasDeleted);

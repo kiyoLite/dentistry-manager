@@ -78,6 +78,14 @@ public class ShiftDAOImpTest {
     }
 
     @Test
+    public void createAutomatically() {
+        Assertions.assertEquals(0, shiftDB.getId());
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        Assertions.assertNotEquals(0, shiftDB.getId(), "id have to be different to long default value");
+    }
+
+    @Test
     public void getById() {
         PersonDAOImp crudPerson = new PersonDAOImp();
         crudPerson.create(person1DB);
@@ -118,13 +126,12 @@ public class ShiftDAOImpTest {
         Assertions.assertEquals(0, shiftDB.getId());
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
-        
-        
+
         long shiftId = shiftDB.getId();
         boolean wasDeleted = crudShift.deleteById(shiftId);
         Assertions.assertTrue(wasDeleted);
         Shift deletedShift = crudShift.getById(shiftId);
         Assertions.assertNull(deletedShift);
-        
+
     }
 }
