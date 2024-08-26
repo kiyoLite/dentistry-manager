@@ -33,6 +33,8 @@ public class BuildEntityDBFromJson {
 //  "shiftReason": "fill bad",
 //  "shiftTime": "14:30"
 //}
+    
+    public BuildEntityDBFromJson(){}
 
     public Shift createShift(JSONObject json) {
         int price = Integer.parseInt(json.getString("shiftPrice"));
