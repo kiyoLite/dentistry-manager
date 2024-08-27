@@ -27,19 +27,17 @@ public class LoginDAOImp implements LoginDAO {
     public boolean existLogin(String userName, String Password) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        
+
         CriteriaQuery criteria = builder.createQuery();
         Root<Login> root = criteria.from(Login.class);
-        Predicate userNameFilter = builder.equal(root.get("userName"),userName );
+        Predicate userNameFilter = builder.equal(root.get("userName"), userName);
         Predicate passwordFilter = builder.equal(root.get("password"), Password);
-        criteria.select(root).where(builder.and(userNameFilter,passwordFilter));
-        
+        criteria.select(root).where(builder.and(userNameFilter, passwordFilter));
+
         Query query = session.createQuery(criteria);
         int quantityLogins = query.list().size();
         return quantityLogins >= 1;
-        
-        
-        
+
     }
 
     @Override
@@ -73,7 +71,19 @@ public class LoginDAOImp implements LoginDAO {
 
     @Override
     public Login update(Login entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            session.update(entity);
+            session.getTransaction().commit();
+            session.close();
+            return entity;
+        } catch (PersistenceException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
     }
 
     @Override

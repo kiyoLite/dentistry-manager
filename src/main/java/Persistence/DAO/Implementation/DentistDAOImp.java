@@ -20,17 +20,15 @@ public class DentistDAOImp implements DentistDAO {
 
     @Override
     public Dentist create(Dentist entity) {
-         Session session = HibernateUtil.getSessionFactory().openSession();
-        try{
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
             session.getTransaction().begin();
             session.save(entity);
             session.getTransaction().commit();
-        }
-        catch(PersistenceException e){
+        } catch (PersistenceException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-        }
-        finally{
+        } finally {
             session.close();
             return entity;
         }
@@ -51,7 +49,19 @@ public class DentistDAOImp implements DentistDAO {
 
     @Override
     public Dentist update(Dentist entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            session.update(entity);
+            session.getTransaction().commit();
+            session.close();
+            return entity;
+        } catch (PersistenceException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
     }
 
     @Override
@@ -70,5 +80,5 @@ public class DentistDAOImp implements DentistDAO {
             return false;
         }
     }
-    
+
 }

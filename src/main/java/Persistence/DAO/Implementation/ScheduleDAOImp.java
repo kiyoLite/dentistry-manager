@@ -49,7 +49,19 @@ public class ScheduleDAOImp implements ScheduleDAO {
 
     @Override
     public Schedule update(Schedule entity) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            session.update(entity);
+            session.getTransaction().commit();
+            session.close();
+            return entity;
+        } catch (PersistenceException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
     }
 
     @Override
@@ -65,7 +77,7 @@ public class ScheduleDAOImp implements ScheduleDAO {
         } catch (IllegalArgumentException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
-            return false; 
+            return false;
         }
     }
 

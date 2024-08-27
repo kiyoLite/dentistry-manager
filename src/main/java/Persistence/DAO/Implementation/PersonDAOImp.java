@@ -10,6 +10,7 @@ import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
 import org.hibernate.Session;
+import org.hibernate.PersistentObjectException;
 
 /**
  *
@@ -44,7 +45,19 @@ public class PersonDAOImp implements PersonDAO {
 
     @Override
     public Person update(Person entity) {
-        return null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        try {
+            session.beginTransaction();
+            session.update(entity);
+            session.getTransaction().commit();
+            session.close();
+            return entity;
+        } catch (PersistenceException e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            session.close();
+            return null;
+        }
     }
 
     @Override
