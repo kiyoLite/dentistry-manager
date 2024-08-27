@@ -83,4 +83,14 @@ public class PatientDAOImpTest {
         Assertions.assertNull(deletedPatient);
     }
 
+    @Test
+    public void update() {
+        PatientDAOImp crudPatient = new PatientDAOImp();
+        crudPatient.create(patientDB);
+        patientDB.setDisability("another disability");
+        personDB.setFirstName("another name");
+        Patient updatedPatient = crudPatient.update(patientDB);
+        Assertions.assertNotNull(updatedPatient);
+    }
+
 }

@@ -22,11 +22,12 @@ public class ScheduleDAOImpTest {
 
     @BeforeEach
     public void setUp() {
-         scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
+        scheduleDB = new Schedule(Calendar.getInstance(), Calendar.getInstance());
 
     }
+
     @AfterEach
-    public void tearDown(){
+    public void tearDown() {
         scheduleDB = null;
     }
 
@@ -36,18 +37,18 @@ public class ScheduleDAOImpTest {
         crud.create(scheduleDB);
         Assertions.assertNotEquals(0, scheduleDB.getId(), "id have to be different to long default value");
     }
-    
+
     @Test
-    public void getById(){
-         ScheduleDAOImp crud = new ScheduleDAOImp();
+    public void getById() {
+        ScheduleDAOImp crud = new ScheduleDAOImp();
         crud.create(scheduleDB);
         Schedule recoveredSchedule = crud.getById(scheduleDB.getId());
         Assertions.assertEquals(scheduleDB.getStartSchedule(), recoveredSchedule.getStartSchedule());
         Assertions.assertEquals(scheduleDB.getEndScehdule(), recoveredSchedule.getEndScehdule());
     }
-    
+
     @Test
-    public void deleteById(){
+    public void deleteById() {
         ScheduleDAOImp crud = new ScheduleDAOImp();
         crud.create(scheduleDB);
         long scheduleId = scheduleDB.getId();
@@ -55,5 +56,16 @@ public class ScheduleDAOImpTest {
         Assertions.assertTrue(wasDeleted);
         Schedule deletedSchedule = crud.getById(scheduleId);
         Assertions.assertNull(deletedSchedule);
+    }
+
+    @Test
+    public void update() {
+        ScheduleDAOImp crud = new ScheduleDAOImp();
+        crud.create(scheduleDB);
+        Calendar newCalendar = Calendar.getInstance();
+        newCalendar.set(Calendar.YEAR, 2019);
+        scheduleDB.setEndScehdule(newCalendar);
+        Schedule updatedSchedule = crud.update(scheduleDB);
+        Assertions.assertNotNull(updatedSchedule);
     }
 }

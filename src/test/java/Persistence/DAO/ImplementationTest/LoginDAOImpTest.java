@@ -17,20 +17,20 @@ import org.junit.jupiter.api.BeforeEach;
  * @author soyky
  */
 public class LoginDAOImpTest {
-
+    
     Login loginDB;
-
+    
     @BeforeEach
     public void setUp() {
         loginDB = new Login("userProof", "passwordProof");
-
+        
     }
-
+    
     @AfterEach
     public void tearDown() {
         loginDB = null;
     }
-
+    
     @Test
     public void create() {
         Assertions.assertEquals(0, loginDB.getId());
@@ -38,7 +38,7 @@ public class LoginDAOImpTest {
         crud.create(loginDB);
         Assertions.assertNotEquals(0, loginDB.getId(), "id have to be different to long default value");
     }
-
+    
     @Test
     public void getById() {
         LoginDAOImp crudLogin = new LoginDAOImp();
@@ -47,7 +47,7 @@ public class LoginDAOImpTest {
         Assertions.assertEquals(loginDB.getUserName(), recoveredLogin.getUserName());
         Assertions.assertEquals(loginDB.getPassword(), recoveredLogin.getPassword());
     }
-
+    
     @Test
     public void deleteById() {
         LoginDAOImp crudLogin = new LoginDAOImp();
@@ -58,12 +58,26 @@ public class LoginDAOImpTest {
         Login deletedLogin = crudLogin.getById(loginId);
         Assertions.assertNull(deletedLogin);
     }
-
+    
     @Test
-    public void existLogin(){
+    public void existLogin() {
         LoginDAOImp crudLogin = new LoginDAOImp();
         crudLogin.create(loginDB);
         boolean existLogin = crudLogin.existLogin(loginDB.getUserName(), loginDB.getPassword());
+        Assertions.assertTrue(existLogin);
+    }
+    
+    @Test
+    public void update() {
+        LoginDAOImp crudLogin = new LoginDAOImp();
+        crudLogin.create(loginDB);
+        loginDB.setPassword("another password");
+        Login updatedLogin = crudLogin.update(loginDB);
+        Assertions.assertNotNull(updatedLogin);
+        
+        String password = loginDB.getPassword();
+        String userName = loginDB.getUserName();
+        boolean existLogin = crudLogin.existLogin(userName, password);
         Assertions.assertTrue(existLogin);
     }
 }

@@ -97,4 +97,16 @@ public class DentistDAOImpTest {
         Assertions.assertNull(deletedDentist);
 
     }
+
+    @Test
+    public void update() {
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+        dentistDB.setDentistEspecialization(Specialization.PATHOLOGY);
+        dentistDB.getSchedule().setStartSchedule(Calendar.getInstance());
+        dentistDB.getPersonalData().setFirstName("another name");
+        Dentist updatedDentist = crudDentist.update(dentistDB);
+        Assertions.assertNotNull(updatedDentist);
+
+    }
 }

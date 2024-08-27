@@ -134,4 +134,16 @@ public class ShiftDAOImpTest {
         Assertions.assertNull(deletedShift);
 
     }
+
+    @Test
+    public void update() {
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        shiftDB.setPrice(200);
+        shiftDB.getPatinet().setDisability("another disability");
+        shiftDB.getPatinet().getPersonalData().setFirstName("another name");
+        shiftDB.getDentist().setDentistEspecialization(Specialization.ORAL);
+        crudShift.update(shiftDB);
+
+    }
 }
