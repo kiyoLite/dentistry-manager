@@ -22,7 +22,8 @@ import org.hibernate.annotations.CascadeType;
  */
 @Entity
 @Table(name = "shifts")
-public class Shift implements EntityDB{
+public class Shift implements EntityDB {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -36,9 +37,11 @@ public class Shift implements EntityDB{
     private Calendar scheduling;
     private String reason;
     private int price;
-    
-    public Shift(){}
-    public Shift( Patient patient, Dentist dentist, Calendar scheduling, String reason, int price){
+
+    public Shift() {
+    }
+
+    public Shift(Patient patient, Dentist dentist, Calendar scheduling, String reason, int price) {
         this.patinet = patient;
         this.dentist = dentist;
         this.scheduling = scheduling;
@@ -48,6 +51,10 @@ public class Shift implements EntityDB{
 
     public long getId() {
         return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Patient getPatinet() {
@@ -89,5 +96,5 @@ public class Shift implements EntityDB{
     public void setPrice(int price) {
         this.price = price;
     }
-    
+
 }

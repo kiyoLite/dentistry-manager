@@ -44,6 +44,10 @@ public class Patient implements EntityDB{
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getDisability() {
         return disability;
     }
