@@ -23,20 +23,20 @@ import Persistence.Entities.Shift;
 @WebServlet(name = "SvUpdateShift", urlPatterns = {"/SvUpdateShift"})
 public class SvUpdateShift extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         JSONObject requestJson = new JSONObject(request.getReader().readLine());
         int shiftId = requestJson.getInt("registerId");
-        
-        ShiftDAOImp shiftDAO = new ShiftDAOImp ();
+
+        ShiftDAOImp shiftDAO = new ShiftDAOImp();
         Shift oldShift = shiftDAO.getById(shiftId);
-        
+
         long patientId = oldShift.getPatinet().getId();
         long personPatientId = oldShift.getPatinet().getPersonalData().getId();
         JSONObject shiftData = requestJson.getJSONObject("registerData");
@@ -45,13 +45,15 @@ public class SvUpdateShift extends HttpServlet {
         newShift.setId(shiftId);
         newShift.getPatinet().setId(patientId);
         newShift.getPatinet().getPersonalData().setId(personPatientId);
-        
+
         shiftDAO.update(newShift);
-        response.setStatus(HttpServletResponse.SC_OK);
-        
-        
-        
-        
+        Shift updatedShift = shiftDAO.update(newShift);
+        if (updatedShift != null) {
+            response.setStatus(HttpServletResponse.SC_OK);
+        } else {
+            response.setStatus(HttpServletResponse.SC_CONFLICT);
+        }
+
     }
 
     @Override
