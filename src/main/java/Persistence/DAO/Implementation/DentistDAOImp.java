@@ -6,12 +6,15 @@ package Persistence.DAO.Implementation;
 
 import Persistence.DAO.Interface.DentistDAO;
 import Persistence.Entities.Dentist;
+import Persistence.Entities.Person;
 import Persistence.Entities.Shift;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Join;
+import javax.persistence.criteria.JoinType;
 import javax.persistence.criteria.Root;
 import org.hibernate.Session;
 import org.hibernate.query.Query;
@@ -94,10 +97,10 @@ public class DentistDAOImp implements DentistDAO {
          CriteriaBuilder builder = session.getCriteriaBuilder();
          CriteriaQuery criteriaQuery = builder.createQuery();
          Root<Dentist> root = criteriaQuery.from(Dentist.class);
-//         Join<>
-//         criteriaQuery.multiselect(
-//                 
-//         )
+         Join<Dentist,Person> dentistPersonalData = root.join("personalData" , JoinType.INNER);
+         criteriaQuery.multiselect(
+                 
+         )
         Query query = session.createQuery(criteriaQuery);
         List<Object[]> data = query.list();
         session.close();
