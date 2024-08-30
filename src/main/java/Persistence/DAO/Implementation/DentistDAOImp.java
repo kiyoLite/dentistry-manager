@@ -10,7 +10,11 @@ import Persistence.Entities.Shift;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -63,6 +67,7 @@ public class DentistDAOImp implements DentistDAO {
             return null;
         }
     }
+    
 
     @Override
     public boolean deleteById(long entityId) {
@@ -73,12 +78,31 @@ public class DentistDAOImp implements DentistDAO {
             session.beginTransaction();
             session.remove(entity);
             session.getTransaction().commit();
+            session.close();
             return true;
         } catch (IllegalArgumentException e) {
             session.getTransaction().rollback();
             e.printStackTrace();
+            session.close();
             return false;
         }
     }
 
+    @Override
+    public List<Object[]> getAllIdAndDentistName() {
+         Session session = HibernateUtil.getSessionFactory().openSession();
+         CriteriaBuilder builder = session.getCriteriaBuilder();
+         CriteriaQuery criteriaQuery = builder.createQuery();
+         Root<Dentist> root = criteriaQuery.from(Dentist.class);
+//         Join<>
+//         criteriaQuery.multiselect(
+//                 
+//         )
+        Query query = session.createQuery(criteriaQuery);
+        List<Object[]> data = query.list();
+        session.close();
+        return data;
+    }
+
+    
 }
