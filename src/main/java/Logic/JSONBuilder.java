@@ -4,6 +4,7 @@
  */
 package Logic;
 
+import java.util.List;
 import org.json.JSONObject;
 
 /**
@@ -21,6 +22,18 @@ public class JSONBuilder {
         }
         return mainJSON;
         
+    }
+    
+    public JSONObject createFromListGenericsObjects(List<Object[]> listGenericsObjects , String[] FieldsNames , String JSONGenericKey){
+        int currentGenericObjectCounter = 1;
+        JSONObject mainJSON = new JSONObject();
+        for(Object[] genericObject : listGenericsObjects){
+            JSONObject subJSON = createFromGenericObject(genericObject, FieldsNames);
+            String curKey = JSONGenericKey + currentGenericObjectCounter;
+            mainJSON.append(curKey, subJSON);
+            currentGenericObjectCounter++;
+        }
+        return mainJSON;
     }
     
 }
