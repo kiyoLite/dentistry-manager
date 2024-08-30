@@ -13,6 +13,9 @@ import org.json.JSONObject;
  */
 public class JSONBuilder {
     
+    
+    public JSONBuilder(){}
+    
     public JSONObject createFromGenericObject(Object[] fields , String[] FieldsNames){
         JSONObject mainJSON = new JSONObject();
         for(int i = 0 ; i < FieldsNames.length ; i++){
