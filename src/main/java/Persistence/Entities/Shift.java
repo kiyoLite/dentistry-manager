@@ -29,7 +29,7 @@ public class Shift implements EntityDB {
     private long id;
     @OneToOne
     @Cascade(CascadeType.SAVE_UPDATE)
-    private Patient patinet;
+    private Patient patient;
     @OneToOne
     @Cascade(CascadeType.SAVE_UPDATE)
     private Dentist dentist;
@@ -42,7 +42,7 @@ public class Shift implements EntityDB {
     }
 
     public Shift(Patient patient, Dentist dentist, Calendar scheduling, String reason, int price) {
-        this.patinet = patient;
+        this.patient = patient;
         this.dentist = dentist;
         this.scheduling = scheduling;
         this.reason = reason;
@@ -58,7 +58,7 @@ public class Shift implements EntityDB {
     }
 
     public Patient getPatinet() {
-        return patinet;
+        return patient;
     }
 
     public Dentist getDentist() {
@@ -78,7 +78,7 @@ public class Shift implements EntityDB {
     }
 
     public void setPatinet(Patient patinet) {
-        this.patinet = patinet;
+        this.patient = patinet;
     }
 
     public void setDentist(Dentist dentist) {
