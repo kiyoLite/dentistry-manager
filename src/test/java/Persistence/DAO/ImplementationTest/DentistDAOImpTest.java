@@ -8,6 +8,7 @@ import Persistence.Entities.Person;
 import Persistence.Entities.Schedule;
 import Persistence.Enums.Specialization;
 import java.util.Calendar;
+import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -108,5 +109,15 @@ public class DentistDAOImpTest {
         Dentist updatedDentist = crudDentist.update(dentistDB);
         Assertions.assertNotNull(updatedDentist);
 
+    }
+
+    @Test
+    public void getAllDentistNameAndId() {
+        DentistDAOImp crudDentist = new DentistDAOImp();
+        crudDentist.create(dentistDB);
+        List<Object[]> CollectionData = crudDentist.getAllIdAndDentistName();
+        Assertions.assertTrue(CollectionData.size() >= 1);
+        Object[] firstElement = CollectionData.get(0);
+        Assertions.assertTrue(firstElement.length == 2);
     }
 }
