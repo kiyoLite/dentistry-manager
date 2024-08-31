@@ -70,7 +70,6 @@ public class DentistDAOImp implements DentistDAO {
             return null;
         }
     }
-    
 
     @Override
     public boolean deleteById(long entityId) {
@@ -93,19 +92,19 @@ public class DentistDAOImp implements DentistDAO {
 
     @Override
     public List<Object[]> getAllIdAndDentistName() {
-         Session session = HibernateUtil.getSessionFactory().openSession();
-         CriteriaBuilder builder = session.getCriteriaBuilder();
-         CriteriaQuery criteriaQuery = builder.createQuery();
-         Root<Dentist> root = criteriaQuery.from(Dentist.class);
-         Join<Dentist,Person> dentistPersonalData = root.join("personalData" , JoinType.INNER);
-         criteriaQuery.multiselect(
-                 
-         )
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery criteriaQuery = builder.createQuery();
+        Root<Dentist> root = criteriaQuery.from(Dentist.class);
+        Join<Dentist, Person> dentistPersonalData = root.join("personalData", JoinType.INNER);
+        criteriaQuery.multiselect(
+                root.get("id"),
+                dentistPersonalData.get("firstName")
+        );
         Query query = session.createQuery(criteriaQuery);
         List<Object[]> data = query.list();
         session.close();
         return data;
     }
 
-    
 }
