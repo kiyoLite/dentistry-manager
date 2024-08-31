@@ -88,43 +88,48 @@ INSERT INTO dentistry.dentists (dentstEspecialization, personalData_person_id, s
 
 --shifts
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (400, "Persistent tooth or gum pain that doesn't go away with painkillers.", '2024-09-02 10:00:00.000000', 1, 12);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (400, "Persistent tooth or gum pain that doesn't go away with painkillers.", '2024-09-02 10:00:00.000000', 1, 12);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (150, "Extreme tooth sensitivity to cold, hot, or sweet foods and drinks.", '2024-09-03 11:30:00.000000', 2, 1);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (150, "Extreme tooth sensitivity to cold, hot, or sweet foods and drinks.", '2024-09-03 11:30:00.000000', 2, 1);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (220, "Gums bleeding when brushing or flossing.", '2024-09-04 09:15:00.000000', 3, 2);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (220, "Gums bleeding when brushing or flossing.", '2024-09-04 09:15:00.000000', 3, 2);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (180, "Constant bad breath that doesn't improve with regular oral hygiene.", '2024-09-05 14:45:00.000000', 4, 3);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (180, "Constant bad breath that doesn't improve with regular oral hygiene.", '2024-09-05 14:45:00.000000', 4, 3);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (310, "Chipped or broken teeth affecting appearance and function.", '2024-09-06 16:30:00.000000', 5, 4);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (310, "Chipped or broken teeth affecting appearance and function.", '2024-09-06 16:30:00.000000', 5, 4);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (295, "Red, swollen, or painful gums indicating possible gingivitis.", '2024-09-07 08:00:00.000000', 1, 5);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (295, "Red, swollen, or painful gums indicating possible gingivitis.", '2024-09-07 08:00:00.000000', 1, 5);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (120, "Need for a routine dental check-up to maintain good oral health.", '2024-09-09 12:30:00.000000', 2, 6);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (120, "Need for a routine dental check-up to maintain good oral health.", '2024-09-09 12:30:00.000000', 2, 6);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (450, "Visible cavities or dark spots on teeth.", '2024-09-10 17:15:00.000000', 3, 7);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (450, "Visible cavities or dark spots on teeth.", '2024-09-10 17:15:00.000000', 3, 7);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (275, "Feeling of loose teeth or changes in bite.", '2024-09-11 10:00:00.000000', 4, 8);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (275, "Feeling of loose teeth or changes in bite.", '2024-09-11 10:00:00.000000', 4, 8);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (90, "Need for professional dental cleaning to remove plaque and tartar buildup.", '2024-09-12 13:45:00.000000', 5, 9);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (90, "Need for professional dental cleaning to remove plaque and tartar buildup.", '2024-09-12 13:45:00.000000', 5, 9);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (400, "Pain when biting or chewing, possibly indicating a deep cavity or abscess.", '2024-09-13 08:30:00.000000', 1, 10);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (400, "Pain when biting or chewing, possibly indicating a deep cavity or abscess.", '2024-09-13 08:30:00.000000', 1, 10);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (230, "Desire to whiten teeth and improve smile appearance.", '2024-09-14 15:00:00.000000', 2, 11);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (230, "Desire to whiten teeth and improve smile appearance.", '2024-09-14 15:00:00.000000', 2, 11);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (350, "Review and adjustment of dental prosthetics or orthodontic devices.", '2024-09-16 09:45:00.000000', 3, 12);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (350, "Review and adjustment of dental prosthetics or orthodontic devices.", '2024-09-16 09:45:00.000000', 3, 12);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (150, "Prevention and treatment of periodontal diseases that can lead to tooth loss.", '2024-09-17 16:15:00.000000', 4, 1);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (150, "Prevention and treatment of periodontal diseases that can lead to tooth loss.", '2024-09-17 16:15:00.000000', 4, 1);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (420, "Frequent headaches or jaw pain, a possible sign of bruxism.", '2024-09-18 11:00:00.000000', 5, 2);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (420, "Frequent headaches or jaw pain, a possible sign of bruxism.", '2024-09-18 11:00:00.000000', 5, 2);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (310, "Dental check after an accident that may have damaged teeth or jaw.", '2024-09-19 10:30:00.000000', 1, 3);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (310, "Dental check after an accident that may have damaged teeth or jaw.", '2024-09-19 10:30:00.000000', 1, 3);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (200, "Changes in teeth alignment affecting bite or aesthetics.", '2024-09-20 14:00:00.000000', 2, 4);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (200, "Changes in teeth alignment affecting bite or aesthetics.", '2024-09-20 14:00:00.000000', 2, 4);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (370, "Treatment of a dental infection causing swelling and fever.", '2024-09-21 12:15:00.000000', 3, 5);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (370, "Treatment of a dental infection causing swelling and fever.", '2024-09-21 12:15:00.000000', 3, 5);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (290, "Need to extract a wisdom tooth causing discomfort.", '2024-09-23 08:45:00.000000', 4, 6);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (290, "Need to extract a wisdom tooth causing discomfort.", '2024-09-23 08:45:00.000000', 4, 6);
 
-INSERT INTO appointments (price, description, scheduling, patient_id, dentist_id) VALUES (480, "Consultation for cosmetic treatments like veneers, implants, or crowns.", '2024-09-24 09:30:00.000000', 5, 7);
+INSERT INTO dentistry.shifts (price, reason, scheduling, dentist_id,patient_id) VALUES (480, "Consultation for cosmetic treatments like veneers, implants, or crowns.", '2024-09-24 09:30:00.000000', 5, 7);
+
+
+
+
+
 
