@@ -19,9 +19,9 @@ public class JSONBuilder {
     public JSONObject createFromGenericObject(Object[] fields , String[] FieldsNames){
         JSONObject mainJSON = new JSONObject();
         for(int i = 0 ; i < FieldsNames.length ; i++){
-            Object curField = fields[0];
-            String curKey = FieldsNames[0];
-            mainJSON.append(curKey, curField);
+            Object curField = fields[i];
+            String curKey = FieldsNames[i];
+            mainJSON.put(curKey, curField);
         }
         return mainJSON;
         
