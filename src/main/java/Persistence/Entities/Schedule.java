@@ -26,11 +26,11 @@ public class Schedule implements EntityDB{
     @Temporal(TemporalType.TIMESTAMP)
     private Calendar startSchedule ;
     @Temporal(TemporalType.TIMESTAMP)
-    private Calendar endScehdule;
+    private Calendar endSchedule;
     public Schedule(){}
     public Schedule(Calendar startSchedule, Calendar endSchedule){
         this.startSchedule = startSchedule;
-        this.endScehdule = endSchedule;
+        this.endSchedule = endSchedule;
     }
 
     public long getId() {
@@ -42,7 +42,7 @@ public class Schedule implements EntityDB{
     }
 
     public Calendar getEndScehdule() {
-        return endScehdule;
+        return endSchedule;
     }
 
     public void setStartSchedule(Calendar startSchedule) {
@@ -50,7 +50,7 @@ public class Schedule implements EntityDB{
     }
 
     public void setEndScehdule(Calendar endScehdule) {
-        this.endScehdule = endScehdule;
+        this.endSchedule = endScehdule;
     }
     
     
