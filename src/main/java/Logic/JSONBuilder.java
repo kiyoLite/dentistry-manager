@@ -33,7 +33,7 @@ public class JSONBuilder {
         for(Object[] genericObject : listGenericsObjects){
             JSONObject subJSON = createFromGenericObject(genericObject, FieldsNames);
             String curKey = JSONGenericKey + currentGenericObjectCounter;
-            mainJSON.append(curKey, subJSON);
+            mainJSON.put(curKey, subJSON);
             currentGenericObjectCounter++;
         }
         return mainJSON;
