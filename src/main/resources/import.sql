@@ -1,4 +1,7 @@
 
+--login
+INSERT INTO dentistry.logins (userName,password) VALUES ("kiyo" , "dev");
+
 -- people
 INSERT INTO dentistry.people (birthDate, email, firstName, lastName) VALUES  ("1987-02-15", "luciaMartinez@example.com", "Lucía", "Martínez");
 
@@ -84,7 +87,7 @@ INSERT INTO dentistry.dentists (dentistEspecialization, personalData_person_id, 
 
 INSERT INTO dentistry.dentists (dentistEspecialization, personalData_person_id, schedule_id) VALUES ("ORAL", 16, 4);
 
-INSERT INTO dentistry.dentists (dentstEspecialization, personalData_person_id, schedule_id) VALUES ("PATHOLOGY", 17, 5);
+INSERT INTO dentistry.dentists (dentistEspecialization, personalData_person_id, schedule_id) VALUES ("PATHOLOGY", 17, 5);
 
 --shifts
 
