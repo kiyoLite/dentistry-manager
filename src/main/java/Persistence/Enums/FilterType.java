@@ -4,6 +4,6 @@
  */
 package Persistence.Enums;
 
-enum FilterType {
-    PRICE, SCHEDULING, DENTIST, PATIENTS, PREDETERMINED;
+public enum FilterType {
+    PRICE, SCHEDULING, DENTIST, PATIENTS, PREDETERMINED
 }
