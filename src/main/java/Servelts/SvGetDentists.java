@@ -21,7 +21,7 @@ import org.json.JSONObject;
  * @author soyky
  */
 @WebServlet(name = "SvIdAndDentistName", urlPatterns = {"/SvIdAndDentistName"})
-public class SvIdAndDentistName extends HttpServlet {
+public class SvGetDentists extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
