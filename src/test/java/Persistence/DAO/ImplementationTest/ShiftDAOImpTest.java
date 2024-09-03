@@ -20,6 +20,7 @@ import Persistence.Enums.InsuranceProvider;
 import Persistence.Enums.Specialization;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Stream;
 import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -172,11 +173,11 @@ public class ShiftDAOImpTest {
         List<Object[]> shifts = crudShift.getShiftsForTable("testName", 5, 0, true, FilterType.PATIENTS);
         Assertions.assertTrue(shifts.size() == 1, "always should return  one record");
         Object[] firstRegister = shifts.get(0);
-        String patientName = (String)firstRegister[4];
+        String patientName = (String) firstRegister[4];
         Assertions.assertTrue(expectPatientName.equals(patientName));
     }
-    
-        @Test
+
+    @Test
     public void getShiftsForTableDentistFilter() {
         String expectDentistName = "testName";
         shiftDB.getDentist().getPersonalData().setFirstName(expectDentistName);
@@ -186,8 +187,36 @@ public class ShiftDAOImpTest {
         List<Object[]> shifts = crudShift.getShiftsForTable("testName", 5, 0, true, FilterType.DENTIST);
         Assertions.assertTrue(shifts.size() == 1, "always should return  one record");
         Object[] firstRegister = shifts.get(0);
-        String DentistName = (String)firstRegister[3];
+        String DentistName = (String) firstRegister[3];
         Assertions.assertTrue(expectDentistName.equals(DentistName));
+    }
+
+    @Test
+    public void getShiftsForTablePriceFilter() {
+        shiftDB.setPrice(300);
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+
+        List<Object[]> shifts = crudShift.getShiftsForTable("300-500", 5, 0, true, FilterType.PRICE);
+        Assertions.assertTrue(shifts.size() >= 1);
+        Stream<Integer> priceShifts = shifts.stream().map(curShift -> (int) curShift[1]);
+        boolean ArePriceShiftsInRange = priceShifts.allMatch(price -> price >= 300 && price <= 500);
+        Assertions.assertTrue(ArePriceShiftsInRange);
+    }
+
+    @Test
+    public void getShiftsForTableAfterSchedulingFilter() {
+        Calendar referenceCalendar = Calendar.getInstance();
+        referenceCalendar.set(2024, 8, 15);
+        shiftDB.setScheduling(referenceCalendar);
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        
+        // set a new scheduling for created shift , remember that Calendar represent month in range 0 -11  so new scheduling and search parameter have the same date
+        List<Object[]> shifts = crudShift.getShiftsForTable("2024-09-15", 5, 0, true, FilterType.SCHEDULING);
+        Stream<Calendar> schedulingShifts = shifts.stream().map(curShift -> (Calendar) curShift[2]);
+        boolean AreSheculingShiftsInRange = schedulingShifts.allMatch( curScheduling -> curScheduling.after(referenceCalendar));
+        Assertions.assertTrue(AreSheculingShiftsInRange);
     }
 
 }
