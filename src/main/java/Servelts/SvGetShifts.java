@@ -4,13 +4,19 @@
  */
 package Servelts;
 
+import Logic.JSONBuilder;
+import Persistence.DAO.Implementation.ShiftDAOImp;
+import Persistence.Enums.FilterType;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.hibernate.annotations.Source;
+import org.json.JSONObject;
 
 /**
  *
@@ -19,69 +25,46 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "SvGetShifts", urlPatterns = {"/SvGetShifts"})
 public class SvGetShifts extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet SvGetShifts</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet SvGetShifts at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
-    }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            int limit = Integer.parseInt(request.getParameter("quantity"));
+            int referenceId = Integer.parseInt(request.getParameter("startFrom"));
+            boolean isNextPage = Boolean.valueOf(request.getParameter("isNextPage"));
+            String search = request.getParameter("search");
+            FilterType filter = FilterType.valueOf(request.getParameter("filter"));
+            
+            ShiftDAOImp shiftDAO = new ShiftDAOImp();
+            List<Object[]> shifts = shiftDAO.getShiftsForTable(search, limit, referenceId, isNextPage, filter);
+            String[] fieldsName = new String[]{"id","price","scheduling","dentistName","patientName","email"};
+            String genericKey = "register";
+            JSONObject responseJSON = new JSONBuilder().createFromListGenericsObjects(shifts, fieldsName, genericKey);
+            
+            response.setStatus(HttpServletResponse.SC_OK);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write(responseJSON.toString());
+            
+            
+            
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+        }
+
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }
