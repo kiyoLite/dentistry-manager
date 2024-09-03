@@ -4,6 +4,7 @@
  */
 package Persistence.DAO.ImplementationTest;
 
+import Logic.JSONBuilder;
 import Persistence.DAO.Implementation.DentistDAOImp;
 import Persistence.DAO.Implementation.PersonDAOImp;
 import Persistence.DAO.Implementation.PatientDAOImp;
@@ -14,9 +15,12 @@ import Persistence.Entities.Person;
 import Persistence.Entities.Patient;
 import Persistence.Entities.Shift;
 import Persistence.Entities.Schedule;
+import Persistence.Enums.FilterType;
 import Persistence.Enums.InsuranceProvider;
 import Persistence.Enums.Specialization;
 import java.util.Calendar;
+import java.util.List;
+import org.json.JSONObject;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -146,4 +150,44 @@ public class ShiftDAOImpTest {
         crudShift.update(shiftDB);
 
     }
+
+    @Test
+    public void getShiftsForTableDefaultFilter() {
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+        List<Object[]> shifts = crudShift.getShiftsForTable("", 5, 0, true, FilterType.PREDETERMINED);
+        String[] fieldsName = new String[]{"id", "price", "scheduling", "dentistName", "patientName", "email"};
+        Assertions.assertTrue(shifts.size() >= 1, "always should return at least one record");
+        Assertions.assertTrue(shifts.get(0).length == 6, "expected retorned fields from DB");
+
+    }
+
+    @Test
+    public void getShiftsForTablePatientFilter() {
+        String expectPatientName = "testName";
+        shiftDB.getPatinet().getPersonalData().setFirstName(expectPatientName);
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+
+        List<Object[]> shifts = crudShift.getShiftsForTable("testName", 5, 0, true, FilterType.PATIENTS);
+        Assertions.assertTrue(shifts.size() == 1, "always should return  one record");
+        Object[] firstRegister = shifts.get(0);
+        String patientName = (String)firstRegister[4];
+        Assertions.assertTrue(expectPatientName.equals(patientName));
+    }
+    
+        @Test
+    public void getShiftsForTableDentistFilter() {
+        String expectDentistName = "testName";
+        shiftDB.getDentist().getPersonalData().setFirstName(expectDentistName);
+        ShiftDAOImp crudShift = new ShiftDAOImp();
+        crudShift.create(shiftDB);
+
+        List<Object[]> shifts = crudShift.getShiftsForTable("testName", 5, 0, true, FilterType.DENTIST);
+        Assertions.assertTrue(shifts.size() == 1, "always should return  one record");
+        Object[] firstRegister = shifts.get(0);
+        String DentistName = (String)firstRegister[3];
+        Assertions.assertTrue(expectDentistName.equals(DentistName));
+    }
+
 }
