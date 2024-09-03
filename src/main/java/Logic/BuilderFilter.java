@@ -79,8 +79,8 @@ public class BuilderFilter {
     }
 
     private Predicate AfterSchedulingFilter() {
-        Pattern pricePattern = Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$");
-        Matcher matcher = pricePattern.matcher(search);
+        Pattern schedulingPattern = Pattern.compile("^\\d{4}-\\d{1,2}-\\d{1,2}$");
+        Matcher matcher = schedulingPattern.matcher(search);
         if (!matcher.matches()) {
             throw new IllegalArgumentException("invalid format");
         }
