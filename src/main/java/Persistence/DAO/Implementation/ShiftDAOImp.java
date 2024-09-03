@@ -4,13 +4,24 @@
  */
 package Persistence.DAO.Implementation;
 
+import Logic.BuilderFilter;
 import Persistence.DAO.Interface.ShiftDAO;
 import Persistence.Entities.Person;
+import Persistence.Entities.Patient;
 import Persistence.Entities.Shift;
+import Persistence.Entities.Dentist;
 import Persistence.HibernateUtil;
 import java.util.List;
 import javax.persistence.PersistenceException;
 import org.hibernate.Session;
+import Persistence.Enums.FilterType;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.JoinType;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Join;
+import org.hibernate.query.Query;
 
 /**
  *
@@ -79,6 +90,51 @@ public class ShiftDAOImp implements ShiftDAO {
             e.printStackTrace();
             return false;
         }
+    }
+
+    public List<Object[]> getShiftsForTable(String search, int limit, int curId, boolean isNextPage, FilterType filterType) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery criteria = builder.createQuery();
+        Root<Shift> root = criteria.from(Shift.class);
+        Join<Shift, Dentist> dentistData = root.join("dentist", JoinType.INNER);
+        Join<Shift, Person> dentistPersonalData = dentistData.join("personalData", JoinType.INNER);
+        Join<Shift, Patient> patientData = root.join("patient", JoinType.INNER);
+        Join<Patient, Person> patientPersonalData = patientData.join("personalData", JoinType.INNER);
+        Predicate filter = new BuilderFilter(
+                builder,
+                filterType == FilterType.PATIENTS
+                        ? patientPersonalData
+                        : filterType == FilterType.DENTIST
+                                ? dentistPersonalData
+                                : root,
+                search).createFilter(filterType);
+        Predicate filterPageDirection;
+
+        if (isNextPage) {
+            filterPageDirection = builder.greaterThan(root.get("id"), curId);
+            criteria.orderBy(builder.asc(root.get("id")));
+        } else {
+            filterPageDirection = builder.lessThan(root.get("id"), curId);
+            criteria.orderBy(builder.desc(root.get("id")));
+        }
+
+        criteria.multiselect(
+                root.get("id"),
+                root.get("price"),
+                root.get("scheduling"),
+                dentistPersonalData.get("firstName"),
+                patientPersonalData.get("firstName"),
+                patientPersonalData.get("email")
+        );
+        criteria.where(builder.and(filter, filterPageDirection));
+
+        Query query = session.createQuery(criteria);
+        query.setMaxResults(limit);
+        List<Object[]> shifts = query.list();
+        session.close();
+        return shifts;
+
     }
 
 }
