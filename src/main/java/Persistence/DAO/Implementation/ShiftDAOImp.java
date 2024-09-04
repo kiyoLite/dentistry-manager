@@ -22,6 +22,8 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import javax.persistence.criteria.Join;
 import org.hibernate.query.Query;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 
 /**
  *
@@ -47,7 +49,7 @@ public class ShiftDAOImp implements ShiftDAO {
 
     @Override
     public List<Shift> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
@@ -92,6 +94,7 @@ public class ShiftDAOImp implements ShiftDAO {
         }
     }
 
+    @Override
     public List<Object[]> getShiftsForTable(String search, int limit, int curId, boolean isNextPage, FilterType filterType) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
@@ -135,6 +138,37 @@ public class ShiftDAOImp implements ShiftDAO {
         session.close();
         return shifts;
 
+    }
+
+    @Override
+    public List<Shift> getShiftForTodayByDentist(long dentistId) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Shift> criteria = builder.createQuery(Shift.class);
+        Root<Shift> root = criteria.from(Shift.class);
+
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        today.set(Calendar.MILLISECOND, 0);
+
+        Calendar endOfDay = (Calendar) today.clone();
+        endOfDay.set(Calendar.HOUR_OF_DAY, 23);
+        endOfDay.set(Calendar.MINUTE, 59);
+        endOfDay.set(Calendar.SECOND, 59);
+        endOfDay.set(Calendar.MILLISECOND, 999);
+
+        Predicate dentistFilter = builder.equal(root.get("dentist"), dentistId);
+        Predicate dateFilter = builder.between(root.get("scheduling"), today, endOfDay);
+
+        criteria.select(root).where(builder.and(dentistFilter, dateFilter));
+
+        Query<Shift> query = session.createQuery(criteria);
+        List<Shift> shifts = query.getResultList();
+        session.close();
+
+        return shifts;
     }
 
 }
