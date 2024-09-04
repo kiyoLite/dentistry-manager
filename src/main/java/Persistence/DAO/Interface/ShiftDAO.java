@@ -5,11 +5,14 @@
 package Persistence.DAO.Interface;
 
 import Persistence.Entities.Shift;
+import Persistence.Enums.FilterType;
+import java.util.List;
 
 /**
  *
  * @author soyky
  */
 public interface ShiftDAO extends DAOCRUD<Shift>{
-    
+     public List<Object[]> getShiftsForTable(String search, int limit, int curId, boolean isNextPage, FilterType filterType);
+     public List<Shift> getShiftForTodayByDentist(long dentistId );
 }
