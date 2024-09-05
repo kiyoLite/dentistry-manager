@@ -57,7 +57,7 @@ public class Shift implements EntityDB {
         this.id = id;
     }
 
-    public Patient getPatinet() {
+    public Patient getPatient() {
         return patient;
     }
 
