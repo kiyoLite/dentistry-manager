@@ -110,7 +110,7 @@ public class ShiftDAOImpTest {
         crudShift.create(shiftDB);
 
         Shift recoveredShift = crudShift.getById(shiftDB.getId());
-        Assertions.assertEquals(shiftDB.getPatinet().getId(), recoveredShift.getPatinet().getId());
+        Assertions.assertEquals(shiftDB.getPatient().getId(), recoveredShift.getPatient().getId());
         Assertions.assertEquals(shiftDB.getDentist().getId(), recoveredShift.getDentist().getId());
         Assertions.assertEquals(shiftDB.getScheduling(), recoveredShift.getScheduling());
         Assertions.assertEquals(shiftDB.getReason(), recoveredShift.getReason());
@@ -145,8 +145,8 @@ public class ShiftDAOImpTest {
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
         shiftDB.setPrice(200);
-        shiftDB.getPatinet().setDisability("another disability");
-        shiftDB.getPatinet().getPersonalData().setFirstName("another name");
+        shiftDB.getPatient().setDisability("another disability");
+        shiftDB.getPatient().getPersonalData().setFirstName("another name");
         shiftDB.getDentist().setDentistEspecialization(Specialization.ORAL);
         crudShift.update(shiftDB);
 
@@ -166,7 +166,7 @@ public class ShiftDAOImpTest {
     @Test
     public void getShiftsForTablePatientFilter() {
         String expectPatientName = "testName";
-        shiftDB.getPatinet().getPersonalData().setFirstName(expectPatientName);
+        shiftDB.getPatient().getPersonalData().setFirstName(expectPatientName);
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
 

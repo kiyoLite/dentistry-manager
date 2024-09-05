@@ -37,14 +37,14 @@ public class SvUpdateShift extends HttpServlet {
         ShiftDAOImp shiftDAO = new ShiftDAOImp();
         Shift oldShift = shiftDAO.getById(shiftId);
 
-        long patientId = oldShift.getPatinet().getId();
-        long personPatientId = oldShift.getPatinet().getPersonalData().getId();
+        long patientId = oldShift.getPatient().getId();
+        long personPatientId = oldShift.getPatient().getPersonalData().getId();
         JSONObject shiftData = requestJson.getJSONObject("registerData");
         BuildEntityDBFromJson entityBuilder = new BuildEntityDBFromJson();
         Shift newShift = entityBuilder.createShift(shiftData);
         newShift.setId(shiftId);
-        newShift.getPatinet().setId(patientId);
-        newShift.getPatinet().getPersonalData().setId(personPatientId);
+        newShift.getPatient().setId(patientId);
+        newShift.getPatient().getPersonalData().setId(personPatientId);
 
         shiftDAO.update(newShift);
         Shift updatedShift = shiftDAO.update(newShift);
