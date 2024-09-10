@@ -65,21 +65,24 @@ public class JSONBuilderTest {
         Shift shift = new Shift(patient, dentist, Calendar.getInstance(), "reason", 0);
 
         String[] expectJSONKeys = new String[]{
-            "patientEps",
+            "patientInsuranceProvider",
             "dentistId",
+            "schedulingDate",
             "price",
             "patientFirstName",
-            "scheduling",
             "patientEmail",
             "dentistName",
+            "schedulingTime",
             "patientBirthDate",
             "shiftReason",
             "patientDisability",
-            "patientLastName"};
+            "patientLastName"
+        };
         JSONBuilder builder = new JSONBuilder();
         JSONObject JSONFromShift = builder.createFromShift(shift);
         Object[] JSONkeys = JSONFromShift.keySet().toArray();
-        Assertions.assertTrue(Arrays.equals(JSONkeys,expectJSONKeys));
-        
+        System.out.println(JSONFromShift.keySet());
+        Assertions.assertTrue(Arrays.equals(JSONkeys, expectJSONKeys));
+
     }
 }
