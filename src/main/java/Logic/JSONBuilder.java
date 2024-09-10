@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
+import javax.xml.rpc.holders.Holder;
 import org.json.JSONObject;
 
 /**
@@ -54,10 +55,11 @@ public class JSONBuilder {
         HashMap<String, Object> shiftData = new HashMap<>();
         shiftData.put("price", shift.getPrice());
         shiftData.put("shiftReason", shift.getReason());
-        shiftData.put("scheduling", formatter.format(shift.getScheduling().getTime()));
+        shiftData.put("schedulingDate", formatter.format(shift.getScheduling().getTime()));
+        shiftData.put("schedulingTime", shift.getScheduling().get(Calendar.HOUR_OF_DAY) + ":" + shift.getScheduling().get(Calendar.MINUTE));
         shiftData.put("dentistId", shift.getDentist().getId());
         shiftData.put("dentistName", shift.getDentist().getPersonalData().getFirstName());
-        shiftData.put("patientEps", patientData.getInsuranceProvider().toString());
+        shiftData.put("patientInsuranceProvider", patientData.getInsuranceProvider().toString());
         shiftData.put("patientDisability", patientData.getDisability());
         shiftData.put("patientEmail", patientData.getPersonalData().getEmail());
         shiftData.put("patientFirstName", patientData.getPersonalData().getFirstName());
