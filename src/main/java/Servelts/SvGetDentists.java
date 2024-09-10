@@ -29,7 +29,7 @@ public class SvGetDentists extends HttpServlet {
         DentistDAOImp dentistDAO = new DentistDAOImp();
         List<Object[]> dentistNameAndId = dentistDAO.getAllIdAndDentistName();
         JSONBuilder jsonBuilder = new JSONBuilder();
-        String[] fieldsNames = new String[]{"Id,Name"};
+        String[] fieldsNames = new String[]{"id,name"};
         String genericKey = "register";
         JSONObject responseJSON = jsonBuilder.createFromListGenericsObjects(dentistNameAndId, fieldsNames, genericKey);
 
