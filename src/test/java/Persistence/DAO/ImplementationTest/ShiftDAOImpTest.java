@@ -218,5 +218,23 @@ public class ShiftDAOImpTest {
         boolean AreSheculingShiftsInRange = schedulingShifts.allMatch( curScheduling -> curScheduling.after(referenceCalendar));
         Assertions.assertTrue(AreSheculingShiftsInRange);
     }
+    
+        
+    @Test 
+    public void getPreviousAndNextShift(){
+        ShiftDAOImp shiftDAO = new ShiftDAOImp();
+        List<Shift> shifts = shiftDAO.getPreviousAndNextShift();
+        Shift nextShift = shifts.get(0);
+        Shift previousShift = shifts.get(1);
+        Calendar utilDate = Calendar.getInstance();
+        //remove one minute because whilte shift is generating the getInstance changes
+        utilDate.add(Calendar.MINUTE, -1);
+        boolean expectValueNS = nextShift == null || nextShift.getScheduling().after(utilDate);
+        boolean expectValuePS = previousShift == null || previousShift.getScheduling().before(utilDate);
+        Assertions.assertTrue(expectValueNS);
+        Assertions.assertTrue(expectValuePS);
+        Assertions.assertTrue(shifts.size() <= 2);
+                      
+    } 
 
 }
