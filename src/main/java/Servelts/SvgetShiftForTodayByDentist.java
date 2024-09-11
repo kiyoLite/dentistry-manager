@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Persistence.Entities.Shift;
-import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
 /**
