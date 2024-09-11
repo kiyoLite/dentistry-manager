@@ -207,7 +207,7 @@ public class ShiftDAOImpTest {
     @Test
     public void getShiftsForTableAfterSchedulingFilter() {
         Calendar referenceCalendar = Calendar.getInstance();
-        referenceCalendar.set(2024, 8, 15);
+        referenceCalendar.add(Calendar.DAY_OF_MONTH, 1);
         shiftDB.setScheduling(referenceCalendar);
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
