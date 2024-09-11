@@ -15,4 +15,5 @@ import java.util.List;
 public interface ShiftDAO extends DAOCRUD<Shift>{
      public List<Object[]> getShiftsForTable(String search, int limit, int curId, boolean isNextPage, FilterType filterType);
      public List<Shift> getShiftForTodayByDentist(long dentistId );
+     public List<Shift> getPreviousAndNextShift();
 }

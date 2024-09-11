@@ -24,6 +24,7 @@ import javax.persistence.criteria.Join;
 import org.hibernate.query.Query;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import javax.persistence.criteria.Order;
 
 /**
  *
@@ -167,6 +168,32 @@ public class ShiftDAOImp implements ShiftDAO {
         Query<Shift> query = session.createQuery(criteria);
         List<Shift> shifts = query.getResultList();
         session.close();
+
+        return shifts;
+    }
+
+    @Override
+    public List<Shift> getPreviousAndNextShift() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+
+        CriteriaQuery<Shift> criteriaAfter = builder.createQuery(Shift.class);
+        Root<Shift> rootAfter = criteriaAfter.from(Shift.class);
+        Predicate filterNextScheduling = builder.greaterThanOrEqualTo(rootAfter.get("scheduling"), Calendar.getInstance());
+        Order orderNext = builder.asc(rootAfter.get("scheduling"));
+        criteriaAfter.select(rootAfter).where(filterNextScheduling).orderBy(orderNext);
+        Query<Shift> queryAfter = session.createQuery(criteriaAfter);
+        queryAfter.setMaxResults(1);
+        List<Shift> shifts = queryAfter.getResultList();
+
+        CriteriaQuery<Shift> criteriaPrevious = builder.createQuery(Shift.class);
+        Root<Shift> rootPrevious = criteriaPrevious.from(Shift.class);
+        Predicate filterPreviousScheduling = builder.lessThan(rootPrevious.get("scheduling"), Calendar.getInstance());
+        Order orderPrevious = builder.desc(rootPrevious.get("scheduling"));
+        criteriaPrevious.select(rootPrevious).where(filterPreviousScheduling).orderBy(orderPrevious);
+        Query<Shift> queryPrevious = session.createQuery(criteriaPrevious);
+        queryPrevious.setMaxResults(1);
+        shifts.addAll(queryPrevious.getResultList());
 
         return shifts;
     }
