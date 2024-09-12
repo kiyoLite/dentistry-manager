@@ -211,30 +211,39 @@ public class ShiftDAOImpTest {
         shiftDB.setScheduling(referenceCalendar);
         ShiftDAOImp crudShift = new ShiftDAOImp();
         crudShift.create(shiftDB);
-        
+
         // set a new scheduling for created shift , remember that Calendar represent month in range 0 -11  so new scheduling and search parameter have the same date
         List<Object[]> shifts = crudShift.getShiftsForTable("2024-09-15", 5, 0, true, FilterType.SCHEDULING);
         Stream<Calendar> schedulingShifts = shifts.stream().map(curShift -> (Calendar) curShift[2]);
-        boolean AreSheculingShiftsInRange = schedulingShifts.allMatch( curScheduling -> curScheduling.after(referenceCalendar));
+        boolean AreSheculingShiftsInRange = schedulingShifts.allMatch(curScheduling -> curScheduling.after(referenceCalendar));
         Assertions.assertTrue(AreSheculingShiftsInRange);
     }
-    
-        
-    @Test 
-    public void getPreviousAndNextShift(){
+
+    @Test
+    public void getPreviousAndNextShift() {
+        Calendar utilDate = Calendar.getInstance();
+        utilDate.add(Calendar.MINUTE, 3);
+        shiftDB.setScheduling(utilDate);
+        shiftDB.setReason("proof shift after now");
         ShiftDAOImp shiftDAO = new ShiftDAOImp();
+        shiftDAO.create(shiftDB);
+        utilDate.add(Calendar.MINUTE, -6);
+        shiftDB.setScheduling(utilDate);
+        shiftDB.setReason("proof shift before now");
+        shiftDAO.create(shiftDB);
+
+        Calendar now = Calendar.getInstance();
         List<Shift> shifts = shiftDAO.getPreviousAndNextShift();
         Shift nextShift = shifts.get(0);
         Shift previousShift = shifts.get(1);
-        Calendar utilDate = Calendar.getInstance();
         //remove one minute because whilte shift is generating the getInstance changes
         utilDate.add(Calendar.MINUTE, -1);
-        boolean expectValueNS = nextShift == null || nextShift.getScheduling().after(utilDate);
-        boolean expectValuePS = previousShift == null || previousShift.getScheduling().before(utilDate);
+        boolean expectValueNS = nextShift == null || nextShift.getScheduling().after(now);
+        boolean expectValuePS = previousShift == null || previousShift.getScheduling().before(now);
         Assertions.assertTrue(expectValueNS);
         Assertions.assertTrue(expectValuePS);
         Assertions.assertTrue(shifts.size() <= 2);
-                      
-    } 
+
+    }
 
 }
