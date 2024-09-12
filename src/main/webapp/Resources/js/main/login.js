@@ -12,8 +12,7 @@ const showPasswordCheckBox = document.getElementById("ShowPasswordCheckbox");
 const togglePasswordVisibility = function () {
     if (showPasswordCheckBox?.checked) {
         inputPassword.type = "text";
-    }
-    else {
+    } else {
         inputPassword.type = "password";
     }
 };
@@ -29,12 +28,14 @@ buttonSubmitForm?.addEventListener("click", () => {
     const password = inputPassword?.value ?? "";
     userName = user;
     existLoginInDB(user, password)
-        .then(response => {
-        if (!isStatusOk(response)) {
-            errorButton(buttonSubmitForm, ButtonErrorType.noFind);
-            userName = "User";
-        }
-    });
+            .then(response => {
+                if (isStatusOk(response))
+                    window.location.href = response.url;
+                else {
+                    errorButton(buttonSubmitForm, ButtonErrorType.noFind);
+                    userName = "User";
+                }
+            });
 });
 showPasswordCheckBox?.addEventListener("change", togglePasswordVisibility);
 export { userName };

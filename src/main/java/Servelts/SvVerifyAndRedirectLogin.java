@@ -36,9 +36,12 @@ public class SvVerifyAndRedirectLogin extends HttpServlet {
         boolean existLogin = loginCrud.existLogin(userName, password);
         if (existLogin) {
             response.setStatus(HttpServletResponse.SC_OK);
-            response.sendRedirect("urlHomePage");
+            response.sendRedirect("http://localhost:8080/DentistryManager/homepage.html");
         }
+        else{
+            
         response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
 
     }
 
