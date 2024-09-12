@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit register</title>
+    <link rel="stylesheet" href="Resources/css/uploadShift.css">
+    <link rel="stylesheet" href="Resources/css/alert.css">
+</head>
+
+<body>
+    <header class="Responsive" id="ContainerBanner">
+        <img src="Resources/images/form image.jpg" alt="">
+        <h1>Create register</h1>
+    </header>
+
+
+    <form id="FormCreateShift" class="Responsive">
+        <section id="ContainerPatientInfo">
+            <h2>Patient</h2>
+            <label for="">First Name
+                <input type="text" name="patientFirstName" id="" required maxlength="255">
+            </label>
+            <label for="">Last Name
+                <input type="text" name="patientLastName" id="" required maxlength="255">
+            </label>
+            <label for="">Birth Date
+                <input type="date" name="patientBirthDate" id="" required>
+            </label>
+            <label>Email
+                <input type="email" name="patientEmail" required maxlength="255">
+            </label>
+            <label>disability <small class="optionalField">(optional)</small>
+                <input type="text" name="patientDisability" id="" maxlength="255">
+            </label>
+            <label for="">Insurance provider
+                <select name="patientInsuranceProvider">
+                    <option value="UNITEDHEALTHCARE">United Healthcare</option>
+                    <option value="KAISER_PERMANENTE">Kaiser Permanente</option>
+                    <option value="ANTHEM_BLUE_CROSS_BLUE_SHIELD">Anthem Blue Cross Blue Shield</option>
+                    <option value="AETNA">Aetna</option>
+                    <option value="CIGNA">Cigna</option>
+                    <option value="HUMANA">Humana</option>
+                </select>
+            </label>
+        </section>
+        <section id="ContainerShiftInfo">
+            <h2>Shift</h2>
+            <label for="">dentist
+                <select name="dentist" id="">
+                </select>
+            </label>
+            <div id="ContainerDateAndTimeShift">
+                <label>scheduling
+                    <div>
+
+                        <input type="date" name="schedulingDate" required>
+                        <input type="time" name="schedulingTime" required>
+                    </div>
+                </label>
+            </div>
+            <label>Reason
+                <textarea name="shiftReason" required maxlength="255"></textarea>
+            </label>
+            <label>price
+                <input type="number" name="price" required>
+            </label>
+        </section>
+    </form>
+    <aside id="ContainerButtons" class="Responsive">
+        <a href="" id="ComeBackPageButton">
+            <p>back</p>
+            <img src="Resources/images/arrowBack.svg" alt="">
+        </a>
+        <button id="SubmitFormButton">
+            <p>upload</p>
+
+            <img src="Resources/images/Check.svg" alt="">
+        </button>
+
+    </aside>
+    <script type="module" src="Resources/js/main/uploadShiftForm.js"></script>
+
+</body>
+
+</html>

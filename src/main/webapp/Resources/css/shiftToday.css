@@ -1,0 +1,211 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #2A2C2D;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(../images/Lato-Regular.ttf);
+}
+
+.Responsive {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ====select dentist==== */
+#ContainerSelectDentist {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 30px 0;
+}
+
+h2 {
+    background: radial-gradient(circle, #0180ff 48%, rgb(255, 255, 255) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-transform: uppercase;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    letter-spacing: 1px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+section h3 {
+    font-family: Arial, Helvetica, sans-serif;
+    color: #dad8d8;
+    font-weight: 200;
+    text-transform: uppercase;
+    font-size: 22px;
+}
+
+#ContainerSelectDentist select {
+    width: 100%;
+    height: 35px;
+    background-color: #36393a;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+    text-transform: capitalize;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.041);
+    cursor: pointer;
+}
+
+/* ==== time line ==== */
+
+/* ==bar== */
+
+#ContainerShiftForToday {
+    width: 100%;
+}
+
+#ContainerTitleAndSendEmail {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+}
+
+#SendEmailButton {
+    border: 0;
+    background: none;
+    cursor: pointer;
+}
+
+#SendEmailButton:hover {
+    transform: scale(1.1);
+    filter: invert(25%);
+
+}
+
+#SendEmailButton>img {
+    width: 27px;
+    height: 27px;
+}
+
+/* ==milestones== */
+
+#ContainerShiftTimeLine {
+    width: 100%;
+    margin: 40px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 10px 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+
+
+.Milestone {
+    background-color: #222324;
+    display: inline-block;
+    border-radius: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column-reverse;
+    height: fit-content;
+    --text-color: #fffff;
+    --clock-color: #ffffff;
+
+}
+
+.Milestone:hover {
+    background-color: #004080;
+    transform: scale(1.02);
+
+}
+
+.ContainerDateTime {
+    display: flex;
+    gap: 20px;
+    justify-content: start;
+    padding: 20px;
+    color: var(--text-color);
+}
+
+.ContinerShiftData {
+    padding: 0px 0px 20px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    display: none;
+    color: var(--text-color);
+
+}
+
+.Milestone:active .ContinerShiftData {
+    display: block;
+}
+
+.ContinerShiftData p[name]::before {
+    top: -17px;
+    border-radius: 20px;
+    left: -9px;
+    text-wrap: nowrap;
+    letter-spacing: 0.5;
+    font-weight: 600;
+}
+
+.ContinerShiftData p[name] {
+    position: relative;
+}
+
+p[name="patientDisability"]::before {
+    content: "patient disability: ";
+
+}
+
+p[name="shiftReason"]::before {
+    content: "reason: ";
+
+}
+
+p[name="patientFirstName"]::before {
+    content: "patient name: ";
+
+}
+
+
+.clock {
+    width: 14px;
+    height: 14px;
+    border: 2px solid var(--clock-color);
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    box-sizing: content-box;
+}
+
+.clock::before,
+.clock::after {
+    content: '';
+    position: absolute;
+    border-top: 2px solid var(--clock-color);
+    height: 0;
+}
+
+.clock::before {
+    width: 8px;
+    transform: rotate(90deg);
+    top: 4px;
+    right: 3px;
+}
+
+.clock::after {
+    width: 5px;
+    top: 7px;
+    right: 1px;
+}

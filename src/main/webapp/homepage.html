@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Resources/css/homepage.css">
+    <link rel="stylesheet" href="Resources/css/header.css">
+    <link rel="stylesheet" href="Resources/css/card.css">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <header id="ContainerHedaer" class="Responsive">
+        <div>
+
+            <img src="../images/teeth.svg" alt="">
+            <p>Dentistry manager</p>
+        </div>
+
+        <nav>
+            <p>signout</p>
+            <details id="ContainerMenu">
+                <summary>
+                    <img src="Resources/images/menu.svg" alt="">
+                </summary>
+                <div id="ContainerOptionsMenu">
+
+                    <a href="http://localhost:8080/DentistryManager/homepage.html.html" id="HomePageLink">home page</a>
+                    <a href="http://localhost:8080/DentistryManager/shiftManager.html" id="ShiftLink">shift</a>
+                    <a href="http://localhost:8080/DentistryManager/shiftToday.html" id="DentistLink">dentist</a>
+                </div>
+            </details>
+        </nav>
+    </header>
+    <aside id="ContainerWelcomeUser" class="Responsive">
+        <h1>Hello</h1>
+        <h1 id="UserName">User</h1>
+    </aside>
+    <main class="Responsive">
+        <section id="ContainerLastShift">
+            <div>
+
+                <h2>last shift</h2>
+                <div class="ContainerLastShift" id="previousShift">
+
+                    <div class="content">
+                        <h2 class="title">Price</h2>
+                        <p class="price">$29</p>
+                        <p class="description">The patient, <strong class="patientName">patient name</strong>
+                            insurance provider is
+                            <strong class="insuranceProvier">insurance provider
+                                name</strong>, was treated on
+                            <strong class="scheduling">date</strong> by Dr. <strong class="dentistName">doctor</strong>,
+                            who specializes in
+                            <strong>specialization</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            </div>
+            <div>
+                <h2>next shift</h2>
+                <div class="ContainerLastShift" id="nextShift">
+                    <div class="content">
+                        <h2 class="title">Price</h2>
+                        <p class="price">$29</p>
+                        <p class="description">The patient, <strong class="patientName">patient name</strong>
+                            insurance provider is
+                            <strong class="insuranceProvier">insurance provider
+                                name</strong>, was treated on
+                            <strong class="scheduling">date</strong> by Dr. <strong class="dentistName">doctor</strong>,
+                            who specializes in
+                            <strong>specialization</strong>.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <section id="ContainerSlider">
+            <h2>Dentist</h2>
+            <div id="FixSlider">
+                <div id="ContainerImages">
+                    <img src="Resources/images/dentist/dentist1.png" alt="">
+                    <img src="Resources/images/dentist/dentist2.png" alt="">
+                    <img src="Resources/images/dentist/dentist3.png" alt="">
+                    <img src="Resources/images/dentist/dentist4.png" alt="">
+                    <img src="Resources/images/dentist/dentist5.png" alt="">
+
+                    <!-- ====duplicates==== -->
+                    <img src="Resources/images/dentist/dentist1.png" alt="">
+                    <img src="Resources/images/dentist/dentist2.png" alt="">
+                    <img src="Resources/images/dentist/dentist3.png" alt="">
+                    <img src="Resources/images/dentist/dentist4.png" alt="">
+                    <img src="Resources/images/dentist/dentist5.png" alt="">
+
+                </div>
+            </div>
+        </section>
+
+    </main>
+    <script type="module" src="Resources/js/main/homepage.js"></script>
+</body>
+
+</html>

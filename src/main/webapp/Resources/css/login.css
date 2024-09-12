@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: lato;
+    src: url(../images/Lato-Regular.ttf);
+}
+
+body {
+    background-color: #2A2C2D;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+
+
+
+}
+
+#TitleSigin {
+    margin: 20px 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: lato, Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+#UserGuide>p {
+    color: #63686d;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 600;
+    text-align: center;
+    font-size: 15px;
+    width: 100%;
+
+}
+
+#UserGuide>p>strong {
+    color: #7f848a;
+
+}
+
+/* =======main container =========== */
+
+#ContainerSigIn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    margin: 40px auto;
+}
+
+#ContainerFormSigin {
+    width: 40%;
+    /* background-color: #fff; */
+}
+
+#ContainerOptionalImage {
+    width: 60%;
+    /* background-color: #fff; */
+}
+
+/* ==========sign in form =========== */
+
+#ContainerFormSigin>form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-items: center;
+}
+
+#UserName,
+#password {
+    background-color: #4e5052;
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    height: 50px;
+    border-radius: 20px;
+    padding: 0 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #ffffff;
+    font-size: 15px;
+    outline: none;
+    cursor: pointer;
+}
+
+::placeholder {
+    color: #d0dbe0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+#ContainerPassword {
+    width: 100%;
+    max-width: 400px;
+    position: relative;
+}
+
+
+
+#ContainerTogglePasswordStatus {
+    position: absolute;
+    right: 10px;
+    top: 15px;
+}
+
+
+
+
+#ShowPasswordCheckbox {
+    position: absolute;
+    cursor: pointer;
+    opacity: 0;
+    width: 17px;
+    height: 17px;
+    right: 1px;
+    z-index: 2;
+
+}
+
+#ShowPasswordCheckbox:checked~#ShowPasswordIcon {
+    display: block;
+}
+
+
+#ShowPasswordCheckbox:checked~#DontShowPasswordIcon {
+    display: none;
+
+}
+
+#DontShowPasswordIcon,
+#ShowPasswordIcon {
+    filter: invert(60%);
+
+}
+
+#ShowPasswordIcon {
+    display: none;
+}
+
+#ContainerSubmitForm {
+    width: 100%;
+    margin: 15px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#submitFormButton {
+    border: none;
+    width: 100%;
+    max-width: 400px;
+    height: 40px;
+    border-radius: 15px;
+    background-color: #463baa;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin-bottom: 10px;
+
+}
+
+
+#submitFormButton:hover {
+
+    background-color: #50489b;
+}
+
+#submitFormButton:active {
+
+    background-color: #413d69;
+}
+
+#ContainerSubmitForm>aside {
+    width: 100%;
+    text-align: center;
+
+}
+
+#ContainerSubmitForm>aside>a {
+    text-decoration: none;
+    color: #606568;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#ContainerSubmitForm>aside>a:hover {
+    color: #8d9499;
+
+}
+
+
+
+/* ==========image============ */
+
+#ContainerOptionalImage>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    height: 350px;
+    display: flex;
+
+}
+
+#ContainerOptionalImage {
+    background: url(../images/abstract-modern-irregular-shape-illustration-png.webp) center center no-repeat;
+    background-size: 320px;
+}
+
+
+@media (max-width:800px) {
+    #ContainerOptionalImage {
+        display: none;
+    }
+
+    #ContainerFormSigin {
+        width: 100%;
+    }
+}
