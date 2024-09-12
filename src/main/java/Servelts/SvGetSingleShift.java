@@ -36,7 +36,7 @@ public class SvGetSingleShift extends HttpServlet {
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().write(unformattedShiftId);
+        response.getWriter().write(responseJSON.toString());
         
         
     }
