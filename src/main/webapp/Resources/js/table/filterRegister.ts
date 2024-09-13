@@ -4,7 +4,7 @@ const containerFilter = document.getElementById("FilterBy") as HTMLSelectElement
 const searchRegisterInput = document.getElementById("SearchRegisterInput") as HTMLInputElement | null;
 
 
-let curFilter: filterType = filterType.default;
+let curFilter: filterType = filterType.PREDETERMINED;
 
 const PlaholderByFilter: Record<string, string> = {
     default: "",
@@ -34,7 +34,7 @@ containerFilter?.addEventListener("change", () => {
     const ContainerFilterValue = getFilter();
     curFilter = ContainerFilterValue !== undefined
         ? ContainerFilterValue as unknown as filterType
-        : filterType.default;
+        : filterType.PREDETERMINED;
 })
 
 

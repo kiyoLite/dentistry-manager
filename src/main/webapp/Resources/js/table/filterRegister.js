@@ -1,7 +1,7 @@
 import { filterType } from "../CallBackend/getRegisters.js";
 const containerFilter = document.getElementById("FilterBy");
 const searchRegisterInput = document.getElementById("SearchRegisterInput");
-let curFilter = filterType.default;
+let curFilter = filterType.PREDETERMINED;
 const PlaholderByFilter = {
     default: "",
     price: "0-100",
@@ -26,6 +26,6 @@ containerFilter?.addEventListener("change", () => {
     const ContainerFilterValue = getFilter();
     curFilter = ContainerFilterValue !== undefined
         ? ContainerFilterValue
-        : filterType.default;
+        : filterType.PREDETERMINED;
 });
 export { getSearch, getFilter, curFilter, changePlaceHolderByFilter };

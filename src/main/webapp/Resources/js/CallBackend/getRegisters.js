@@ -9,11 +9,11 @@ const getRegisterShiftTable = function (config) {
 //create the same enum at backend
 var filterType;
 (function (filterType) {
-    filterType[filterType["price"] = 0] = "price";
-    filterType[filterType["scheduling"] = 1] = "scheduling";
-    filterType[filterType["dentist"] = 2] = "dentist";
-    filterType[filterType["patient"] = 3] = "patient";
-    filterType[filterType["default"] = 4] = "default";
+    filterType[filterType["PRICE"] = 0] = "PRICE";
+    filterType[filterType["SCHEDULING"] = 1] = "SCHEDULING";
+    filterType[filterType["DENTIST"] = 2] = "DENTIST";
+    filterType[filterType["PATIENTS"] = 3] = "PATIENTS";
+    filterType[filterType["PREDETERMINED"] = 4] = "PREDETERMINED";
 })(filterType || (filterType = {}));
 class FetchConfig {
     constructor(quantity, startFrom, filter, search, isNextPage) {

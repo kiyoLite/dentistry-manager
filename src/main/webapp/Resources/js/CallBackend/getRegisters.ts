@@ -9,7 +9,7 @@ const getRegisterShiftTable = function (config: FetchConfig) {
 
 //create the same enum at backend
 enum filterType {
-    price, scheduling, dentist, patient, default
+    PRICE, SCHEDULING, DENTIST, PATIENTS, PREDETERMINED
 }
 interface registerShiftTable {
     id: string;
