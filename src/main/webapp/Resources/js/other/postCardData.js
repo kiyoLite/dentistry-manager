@@ -2,62 +2,22 @@ import { consoleErrorWithoutStopExecution } from "../alert/Error/console.js";
 import { leftScreenToastError, toastMessage } from "../alert/Error/toast.js";
 import { getCardData } from "../CallBackend/getCardsData.js";
 import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
-
-const mokearData = function () {
-    return new Promise(
-
-        (resolve, reject) => {
-
-            const data = {
-                shift1: {
-                    patientInsuranceProvider: 'KAISER_PERMANENTE',
-                    dentistId: 1,
-                    price: 150.50,
-                    patientFirstName: 'John',
-                    schedulingTime: '14:30',
-                    schedulingDate: '2024-09-10',
-                    patientEmail: 'john.doe@example.com',
-                    dentistName: 'Dr. Smith',
-                    patientBirthDate: '1990-05-15',
-                    shiftReason: 'Routine checkup',
-                    patientDisability: 'None',
-                    patientLastName: 'Doe'
-                },
-                shift2: {
-                    patientInsuranceProvider: 'AETNA',
-                    dentistId: 2,
-                    price: 200.00,
-                    patientFirstName: 'Jane',
-                    schedulingTime: '10:00',
-                    schedulingDate: '2024-09-11',
-                    patientEmail: 'jane.smith@example.com',
-                    dentistName: 'Dr. Brown',
-                    patientBirthDate: '1985-08-22',
-                    shiftReason: 'Cavity filling',
-                    patientDisability: 'None',
-                    patientLastName: 'Smith'
-                }
-            };
-            setTimeout(() => resolve(data), 3000)
-        }
-    )
-}
 const getData = async function () {
     let data;
-    await mokearData()
+    await getCardData()
+        .then(response => response.json())
         .then((result) => data = result);
     return data;
 };
 const sortDataKeys = function (data) {
-    let dataKeys = Object.keys(data);
-    dataKeys = dataKeys.sort((a, b) => {
+    const dataKeys = Object.keys(data);
+    dataKeys.sort((a, b) => {
         const dataA = data[a];
         const dataB = data[b];
         const scheculingA = new Date(dataA.schedulingDate + "T" + dataA.schedulingTime);
         const schedulingB = new Date(dataB.schedulingDate + "T" + dataB.schedulingTime);
         return scheculingA > schedulingB ? 1 : -1;
     });
-    console.log(dataKeys)
     return dataKeys;
 };
 const postDataToSingleCard = function (data, card) {
@@ -85,7 +45,7 @@ const postDataToCards = async function () {
     verifyDOMElementExisteOrError(previousShiftCard);
     verifyDOMElementExisteOrError(nextShiftCard);
     const dataKeys = sortDataKeys(data);
-    // cards must be in that order beacuase , datakeys is sorted in ascending order so  last/previous shift is filling first.js; 
+    // cards must be in that order beacuase , datakeys is sorted in ascending order so  last/previous shift is filling first; 
     const cards = [previousShiftCard, nextShiftCard];
     for (let i = 0; i < cards.length; i++) {
         const card = cards[i];
