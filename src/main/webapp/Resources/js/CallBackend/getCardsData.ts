@@ -1,5 +1,5 @@
 const getCardData = function () {
-    const url = "";
+    const url = "http://localhost:8080/DentistryManager/SvgetCardsData";
     return fetch(url, { method: "GET" });
 }
 
