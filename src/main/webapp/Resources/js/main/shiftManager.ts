@@ -47,7 +47,7 @@ updateRegisterButton?.addEventListener("click", (e) => {
     let idForUpdateRegister = getDBIdFromHighLightRow();
     if (idForUpdateRegister !== null) {
         sessionStorage.setItem("updateRegisterId", idForUpdateRegister.toString());
-        window.location.href = "https://www.semrush.com/blog/javascript-redirect/"
+        window.location.href = "http://localhost:8080/DentistryManager/shiftManager.html"
     }
     else {
         const errorTitle = "you need first select a register"
@@ -63,7 +63,7 @@ const initializeTable = function () {
 }
 
 ContainerRegisters?.addEventListener("click", showMoreInfo);
-// initializeTable();
+ initializeTable();
 
 
 export { defaultTableSize, buttonPushed, buttonPushedType }

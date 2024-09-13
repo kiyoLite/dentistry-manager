@@ -1,5 +1,5 @@
 const getRegisterShiftTable = function (config: FetchConfig) {
-    const SvUrl: string = "";
+    const SvUrl: string = "http://localhost:8080/DentistryManager/SvGetShifts";
     const parameters = config.buildUrlParams();
     const SvUrlWithParameters = SvUrl + "?" + parameters.toString();
     return fetch(SvUrlWithParameters, {
