@@ -81,7 +81,6 @@ public class JSONBuilderTest {
         JSONBuilder builder = new JSONBuilder();
         JSONObject JSONFromShift = builder.createFromShift(shift);
         Object[] JSONkeys = JSONFromShift.keySet().toArray();
-        System.out.println(JSONFromShift.keySet());
         Assertions.assertTrue(Arrays.equals(JSONkeys, expectJSONKeys));
 
     }
