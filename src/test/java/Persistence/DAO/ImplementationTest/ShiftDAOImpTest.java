@@ -18,7 +18,12 @@ import Persistence.Entities.Schedule;
 import Persistence.Enums.FilterType;
 import Persistence.Enums.InsuranceProvider;
 import Persistence.Enums.Specialization;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Formatter;
 import java.util.List;
 import java.util.stream.Stream;
 import org.json.JSONObject;
@@ -206,17 +211,23 @@ public class ShiftDAOImpTest {
 
     @Test
     public void getShiftsForTableAfterSchedulingFilter() {
-        Calendar referenceCalendar = Calendar.getInstance();
-        referenceCalendar.add(Calendar.DAY_OF_MONTH, 1);
-        shiftDB.setScheduling(referenceCalendar);
-        ShiftDAOImp crudShift = new ShiftDAOImp();
-        crudShift.create(shiftDB);
+        Calendar referenceDate = Calendar.getInstance();
+        referenceDate.add(Calendar.DAY_OF_MONTH, 3);
+        shiftDB.setScheduling(referenceDate);
+        ShiftDAOImp shiftDAO = new ShiftDAOImp();
+        shiftDAO.create(shiftDB);
 
-        // set a new scheduling for created shift , remember that Calendar represent month in range 0 -11  so new scheduling and search parameter have the same date
-        List<Object[]> shifts = crudShift.getShiftsForTable("2024-09-15", 5, 0, true, FilterType.SCHEDULING);
-        Stream<Calendar> schedulingShifts = shifts.stream().map(curShift -> (Calendar) curShift[2]);
-        boolean AreSheculingShiftsInRange = schedulingShifts.allMatch(curScheduling -> curScheduling.after(referenceCalendar));
-        Assertions.assertTrue(AreSheculingShiftsInRange);
+        LocalDate now = LocalDate.now();
+        List<Object[]> registers = shiftDAO.getShiftsForTable(now.toString(), 5, 0, true, FilterType.SCHEDULING);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Stream<LocalDate> dates = registers.stream().map(curElement -> {
+            LocalDate registerScheduling = LocalDate.parse((String) curElement[2], formatter);
+            return registerScheduling;
+        });
+        boolean areAllDatesAfter = dates.allMatch(curElement -> curElement.isAfter(now) || curElement.isEqual(now));
+        Assertions.assertTrue(registers.size() >= 1);
+        Assertions.assertTrue(areAllDatesAfter);
+
     }
 
     @Test

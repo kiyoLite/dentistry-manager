@@ -24,6 +24,7 @@ import javax.persistence.criteria.Join;
 import org.hibernate.query.Query;
 import java.time.LocalDateTime;
 import java.util.Calendar;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Order;
 
 /**
@@ -122,11 +123,13 @@ public class ShiftDAOImp implements ShiftDAO {
             filterPageDirection = builder.lessThan(root.get("id"), curId);
             criteria.orderBy(builder.desc(root.get("id")));
         }
-
+        Expression<String> scheduling = builder.function(
+                "DATE_FORMAT", String.class, root.get("scheduling"), builder.literal("%Y-%m-%d")
+        );
         criteria.multiselect(
                 root.get("id"),
                 root.get("price"),
-                root.get("scheduling"),
+                scheduling,
                 dentistPersonalData.get("firstName"),
                 patientPersonalData.get("firstName"),
                 patientPersonalData.get("email")
