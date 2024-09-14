@@ -1,6 +1,7 @@
 const getRegisterShiftTable = function (config) {
     const SvUrl = "http://localhost:8080/DentistryManager/SvGetShifts";
     const parameters = config.buildUrlParams();
+    console.log(parameters.get("filter"))
     const SvUrlWithParameters = SvUrl + "?" + parameters.toString();
     return fetch(SvUrlWithParameters, {
         method: 'GET'
@@ -42,7 +43,7 @@ class FetchConfig {
         const parameters = new URLSearchParams();
         parameters.append("quantity", this.quantity.toString());
         parameters.append("startFrom", this.startFrom.toString());
-        parameters.append("filter", filterType[this.filter].toString());
+        parameters.append("filter", filterType[this.filter]);
         parameters.append("search", this.search);
         parameters.append("isNextPage", String(this.isNextPage));
         return parameters;

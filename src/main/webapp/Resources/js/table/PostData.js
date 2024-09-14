@@ -3,7 +3,7 @@ const keysFromRegisterShiftTable = {
     1: "dentistName",
     2: "scheduling",
     3: "contact",
-    4: "price",
+    4: "price"
 };
 const postDataSingleRow = function (rowData, row) {
     const rowFields = Array.from(row.cells);

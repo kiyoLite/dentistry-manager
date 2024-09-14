@@ -194,6 +194,7 @@ public class ShiftDAOImp implements ShiftDAO {
         Query<Shift> queryPrevious = session.createQuery(criteriaPrevious);
         queryPrevious.setMaxResults(1);
         shifts.addAll(queryPrevious.getResultList());
+        session.close();
 
         return shifts;
     }

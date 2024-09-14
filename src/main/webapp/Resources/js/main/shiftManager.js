@@ -48,7 +48,7 @@ updateRegisterButton?.addEventListener("click", (e) => {
 });
 //@ts-ignore
 const initializeTable = function () {
-    const config = new FetchConfig(defaultTableSize, 0, filterType.default, "", true);
+    const config = new FetchConfig(defaultTableSize, 0, filterType.PREDETERMINED, "", true);
     tryGeneratePage(config);
 };
 ContainerRegisters?.addEventListener("click", showMoreInfo);

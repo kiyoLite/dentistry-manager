@@ -64,7 +64,7 @@ const tryGeneratePage = async function (config = getFetchConfigToPagination()) {
     }
     catch (e) {
         const error = e;
-        consoleErrorWithoutStopExecution(error.message);
+        consoleErrorWithoutStopExecution(error);
         const userErrorDescription = "couldn't generate new page";
         const userErrorTitle = "Error";
         const toast = new toastMessage(userErrorTitle, userErrorDescription);
