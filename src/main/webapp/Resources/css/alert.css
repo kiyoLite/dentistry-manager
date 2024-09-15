@@ -143,6 +143,63 @@
     color: #ffffff
 }
 
+.WarningToastContainer {
+    background-color: #948a33;
+    position: fixed;
+    width: 100%;
+    max-width: 370px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2.5fr 10fr;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.267);
+    z-index: 2;
+    animation: blurAppearance 500ms;
+}
+
+
+.WarningToastContainer .ContainerImage {
+    margin: auto;
+
+
+}
+
+.WarningToastContainer .Image {
+    border-radius: 100%;
+    background-color: #dfd1504d;
+    width: 25px;
+    height: 25px;
+    padding: 3px;
+    box-sizing: content-box;
+
+
+}
+
+.WarningToastContainer .ContaienrText {
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 15px 0;
+
+
+}
+
+.WarningToastContainer .Title {
+    font-family: Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    color: #e7e3cb;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.WarningToastContainer .Description {
+    font-family: Arial, Helvetica, sans-serif;
+    text-wrap: pretty;
+    color: #ffffff
+}
+
+
 
 /* ====animation==== */
 
