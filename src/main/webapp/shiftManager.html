@@ -35,7 +35,7 @@
         <p>search by</p>
         <div>
 
-            <select id="FilterBy">
+            <select id="FilterBy" data-lastFilter="PREDETERMINED">
                 <option value="PREDETERMINED" selected>default</option>
                 <option value="PATIENTS">patient</option>
                 <option value="DENTIST">dentist</option>
@@ -45,8 +45,8 @@
             </select>
             <form action="" id="ContainerSearchRegister">
 
-                <input type="text" name="" id="SearchRegisterInput" placeholder="ID">
-                <img src="Resources/images/search.svg" alt="" id="whatever">
+                <input type="text" name="" id="SearchRegisterInput" placeholder="" data-lastSearch="">
+                <img src="Resources/images/search.svg" alt="" id="searchButton">
             </form>
         </div>
     </nav>
