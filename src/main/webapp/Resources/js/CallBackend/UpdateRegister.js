@@ -1,5 +1,5 @@
 const sendDataUpdateRegister = function (registerId, data) {
-    const url = "";
+    const url = "http://localhost:8080/DentistryManager/SvUpdateShift";
     return fetch(url, {
         method: "POST",
         body: JSON.stringify({

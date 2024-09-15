@@ -3,7 +3,7 @@ interface messagingType {
 }
 
 const sendDataUpdateRegister = function (registerId: number, data: messagingType) {
-    const url = "";
+    const url = "http://localhost:8080/DentistryManager/SvUpdateShift";
     return fetch(
         url,
         {

@@ -32,6 +32,7 @@ public class SvGetDentists extends HttpServlet {
         String[] fieldsNames = new String[]{"id,name"};
         String genericKey = "register";
         JSONObject responseJSON = jsonBuilder.createFromListGenericsObjects(dentistNameAndId, fieldsNames, genericKey);
+        System.out.println(responseJSON);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

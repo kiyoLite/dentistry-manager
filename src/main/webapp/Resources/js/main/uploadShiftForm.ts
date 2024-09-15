@@ -1,9 +1,3 @@
-// must all files be filling 
-// fill dentist option ✅
-// create json to send to backend✅
-//verify if update servelt or update ✅
-// fill fields from form if the form mode is update ✅
-
 import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
 import { fillUpdateRegisterForm } from "../form/fillForm.js";
 import { getFormDataAsObj } from "../form/getData.js";
