@@ -5,7 +5,7 @@ const keysFromRegisterShiftTable: Record<number, string> = {
     0: "patientName",
     1: "dentistName",
     2: "scheduling",
-    3: "contact",
+    3: "email",
     4: "price",
 }
 
