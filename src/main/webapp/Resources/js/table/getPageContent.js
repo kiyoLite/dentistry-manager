@@ -1,7 +1,7 @@
 import { buttonPushed, defaultTableSize, buttonPushedType } from "../main/shiftManager.js";
 import { consoleErrorStopExecution, consoleErrorWithoutStopExecution } from "../alert/Error/console.js";
-import { curFilter, getSearch } from "./filterRegister.js";
-import { getRegisterShiftTable, FetchConfig } from "../CallBackend/getRegisters.js";
+import { getFilter, getSearch } from "./filterRegister.js";
+import { getRegisterShiftTable, FetchConfig, filterType } from "../CallBackend/getRegisters.js";
 import { postDataToRows } from "./PostData.js";
 import { toastMessage, leftScreenToastError } from "../alert/Error/toast.js";
 import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
@@ -11,7 +11,8 @@ const getFetchConfigToPagination = function () {
     const referenceId = getRequireId(buttonPushed);
     const isNextPage = buttonPushed === buttonPushedType.next;
     const searchBy = getSearch();
-    return new FetchConfig(defaultTableSize, referenceId, curFilter, searchBy, isNextPage);
+    const filter = filterType[getFilter()];
+    return new FetchConfig(defaultTableSize, referenceId, filter, searchBy, isNextPage);
 };
 const getPageData = async function (queryFilter) {
     let data = null;
@@ -60,11 +61,12 @@ const throttle = function () {
 const GeneratePageThrotthle = throttle();
 const tryGeneratePage = async function (config = getFetchConfigToPagination()) {
     try {
+        console.log("here")
         await GeneratePageThrotthle(config);
     }
     catch (e) {
         const error = e;
-        consoleErrorWithoutStopExecution(error);
+        consoleErrorWithoutStopExecution(error.message);
         const userErrorDescription = "couldn't generate new page";
         const userErrorTitle = "Error";
         const toast = new toastMessage(userErrorTitle, userErrorDescription);

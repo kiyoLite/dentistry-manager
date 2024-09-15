@@ -1,10 +1,4 @@
-import { filterType } from "../CallBackend/getRegisters.js";
 
-const containerFilter = document.getElementById("FilterBy") as HTMLSelectElement | null;
-const searchRegisterInput = document.getElementById("SearchRegisterInput") as HTMLInputElement | null;
-
-
-let curFilter: filterType = filterType.PREDETERMINED;
 
 const PlaholderByFilter: Record<string, string> = {
     default: "",
@@ -12,11 +6,13 @@ const PlaholderByFilter: Record<string, string> = {
     scheduling: "MM-DD-YYYY"
 }
 const getFilter = function () {
-    const filter = containerFilter?.value;
+    const containerFilter = document.getElementById("FilterBy") as HTMLSelectElement | null;
+    const filter = containerFilter?.value ?? "PREDETERMINED";
     return filter;
 }
 
 const getSearch = function () {
+    const searchRegisterInput = document.getElementById("SearchRegisterInput") as HTMLInputElement | null;
     const search = searchRegisterInput?.value ?? ""
     return search;
 }
@@ -26,19 +22,14 @@ const changePlaceHolderByFilter = function () {
     // if the input doesnt have a custom place holder is because you should put
     // the name
     const PlaceHolder = PlaholderByFilter[filter!] || "NAME";
+    const searchRegisterInput = document.getElementById("SearchRegisterInput") as HTMLInputElement | null;
     searchRegisterInput?.setAttribute("placeholder", PlaceHolder)
 }
 
 
-containerFilter?.addEventListener("change", () => {
-    const ContainerFilterValue = getFilter();
-    curFilter = ContainerFilterValue !== undefined
-        ? ContainerFilterValue as unknown as filterType
-        : filterType.PREDETERMINED;
-})
 
 
-export { getSearch, getFilter, curFilter, changePlaceHolderByFilter };
+export { getSearch, getFilter, changePlaceHolderByFilter };
 
 
 

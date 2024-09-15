@@ -1,7 +1,7 @@
 import { buttonPushed, defaultTableSize, buttonPushedType } from "../main/shiftManager.js";
 import { consoleErrorStopExecution, consoleErrorWithoutStopExecution } from "../alert/Error/console.js";
-import { curFilter, getSearch } from "./filterRegister.js";
-import { getRegisterShiftTable, CollectionRegisterShiftTable, FetchConfig } from "../CallBackend/getRegisters.js";
+import { getFilter, getSearch } from "./filterRegister.js";
+import { getRegisterShiftTable, CollectionRegisterShiftTable, FetchConfig, filterType } from "../CallBackend/getRegisters.js";
 import { postDataToRows } from "./PostData.js";
 import { toastMessage, leftScreenToastError } from "../alert/Error/toast.js";
 import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
@@ -13,7 +13,8 @@ const getFetchConfigToPagination = function () {
     const referenceId = getRequireId(buttonPushed);
     const isNextPage = buttonPushed === buttonPushedType.next;
     const searchBy = getSearch();
-    return new FetchConfig(defaultTableSize, referenceId, curFilter, searchBy, isNextPage);
+    const filter = filterType[getFilter() as keyof typeof filterType];
+    return new FetchConfig(defaultTableSize, referenceId, filter, searchBy, isNextPage);
 }
 
 
