@@ -61,7 +61,6 @@ const throttle = function () {
 const GeneratePageThrotthle = throttle();
 const tryGeneratePage = async function (config = getFetchConfigToPagination()) {
     try {
-        console.log("here")
         await GeneratePageThrotthle(config);
     }
     catch (e) {
