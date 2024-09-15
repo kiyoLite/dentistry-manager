@@ -1,5 +1,5 @@
 import { highlightSingleRow, getDBIdFromHighLightRow } from "../table/Highlight.js";
-import { removeHightlightRegisterFromTableAndDB } from "../table/delete.js";
+import { removeHightlightRegister } from "../table/delete.js";
 import { leftScreenToastError, toastMessage } from "../alert/Error/toast.js";
 import { changePlaceHolderByFilter, getFilter, getSearch } from "../table/filterRegister.js";
 import { tryGeneratePage } from "../table/getPageContent.js";
@@ -45,7 +45,7 @@ nextPageButton?.addEventListener("click",tryGenerateNextPage);
 previousPageButton?.addEventListener("click", tryGeneratePreviousPage);
 
 ContainerRegisters?.addEventListener("click", highlightSingleRow);
-garbageButton?.addEventListener("click", removeHightlightRegisterFromTableAndDB);
+garbageButton?.addEventListener("click", removeHightlightRegister);
 filterOptions?.addEventListener("change", changePlaceHolderByFilter)
 filterOptions?.addEventListener("change", blockPagination)
 searchBar?.addEventListener("blur", blockPagination)
