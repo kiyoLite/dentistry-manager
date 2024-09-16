@@ -62,6 +62,5 @@ const dentistField = document.querySelector(`select[name="dentist"]`);
 const form = document.getElementById("FormCreateShift");
 verifyDOMElementExisteOrError(form);
 verifyDOMElementExisteOrError(dentistField);
-console.log("here");
 FillSelectElementWithDentists(dentistField);
 document.getElementById("SubmitFormButton")?.addEventListener("click", uploadData);
