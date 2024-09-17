@@ -1,5 +1,5 @@
 const getSingleRegister = function (registerId: number) {
-    const url = ""
+    const url = "http://localhost:8080/DentistryManager/SvGetSingleShift"
     return fetch(url,
         {
             method: "GET",

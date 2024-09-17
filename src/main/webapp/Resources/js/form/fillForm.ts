@@ -39,7 +39,7 @@ const getData = async function (registerId: number) {
     let data: registerType | null = null;
     await getSingleRegister(registerId)
         .then(response => {
-            if (isStatusOk(response)) {
+            if (!isStatusOk(response)) {
                 const httpStatus = response.status;
                 errorGetFormData(httpStatus);
             }

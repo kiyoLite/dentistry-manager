@@ -1,7 +1,7 @@
 const getSingleRegister = function (registerId) {
-    const url = "";
+    const url = "http://localhost:8080/DentistryManager/SvGetSingleShift";
     return fetch(url, {
-        method: "GET",
+        method: "POST",
         headers: { 'Content-Type': 'text/plain' },
         body: registerId.toString()
     });

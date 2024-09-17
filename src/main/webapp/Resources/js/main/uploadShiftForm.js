@@ -20,7 +20,8 @@ const registerId = sessionStorage.getItem("updateRegisterId");
 const isUpdateMode = registerId !== null;
 const changePageTitle = function () {
     const pageTitle = document.querySelector("h1");
-    verifyDOMElementExisteOrError(pageTitle);
+    verifyDOMElementExisteOrError(pageTitle); 
+    const newTitle = "UPDATE REGISTER ";
     pageTitle.textContent = newTitle + "#" + registerId;
 };
 if (isUpdateMode) {

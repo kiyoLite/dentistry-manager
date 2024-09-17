@@ -26,24 +26,22 @@ public class SvGetSingleShift extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         String unformattedShiftId = request.getReader().readLine();
         long shiftId = Long.parseLong(unformattedShiftId);
         ShiftDAOImp shiftDAO = new ShiftDAOImp();
         Shift shift = shiftDAO.getById(shiftId);
         JSONBuilder builder = new JSONBuilder();
         JSONObject responseJSON = builder.createFromShift(shift);
-        
+
         response.setStatus(HttpServletResponse.SC_ACCEPTED);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.getWriter().write(responseJSON.toString());
-        
-        
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 
     @Override
