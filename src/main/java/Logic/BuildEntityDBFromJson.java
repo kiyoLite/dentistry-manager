@@ -37,10 +37,9 @@ public class BuildEntityDBFromJson {
     public BuildEntityDBFromJson(){}
 
     public Shift createShift(JSONObject json) {
-        int price = Integer.parseInt(json.getString("shiftPrice"));
-
-        String ShiftDate = json.getString("shiftDate");
-        String ShiftTime = json.getString("shiftTime");
+        int price = Integer.parseInt(json.getString("price"));
+        String ShiftDate = json.getString("schedulingDate");
+        String ShiftTime = json.getString("schedulingTime");
         String unformattedShiftDateTime = ShiftDate + "-" + ShiftTime;
         String ShiftDateTime = unformattedShiftDateTime.replace(':', '-');
         List<Integer> schedulingPart = ExctractAndConvertDate.extractDateTime(ShiftDateTime, "-");
@@ -65,7 +64,7 @@ public class BuildEntityDBFromJson {
 
     public Patient createPatient(JSONObject json) {
         String disability = json.getString("patientDisability");
-        String unformattedInsuranceProvider = json.getString("PatientInsuranceProvider");
+        String unformattedInsuranceProvider = json.getString("patientInsuranceProvider");
         return new Patient(
                 disability.equals("") ? null : disability,
                 InsuranceProvider.valueOf(unformattedInsuranceProvider),

@@ -30,13 +30,13 @@ public class BuildEntityDBFromJsonTest {
                 + "\"patientBirthDate\": \"2007-04-19\","
                 + "\"patientDisability\": \"\","
                 + "\"patientEmail\": \"kiyodeveloper@gmail.com\","
-                + "\"PatientInsuranceProvider\": \"AETNA\","
+                + "\"patientInsuranceProvider\": \"AETNA\","
                 + "\"patientFirstName\": \"kiyo\","
                 + "\"patientLastName\": \"dev\","
-                + "\"shiftDate\": \"2024-08-25\","
-                + "\"shiftPrice\": \"70\","
+                + "\"schedulingDate\": \"2024-08-25\","
+                + "\"price\": \"70\","
                 + "\"shiftReason\": \"feel bad\","
-                + "\"shiftTime\": \"14:30\""
+                + "\"schedulingTime\": \"14:30\""
                 + "}";
         json = new JSONObject(jsonString);
     }
