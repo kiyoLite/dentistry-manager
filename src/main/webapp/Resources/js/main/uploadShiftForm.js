@@ -21,7 +21,6 @@ const isUpdateMode = registerId !== null;
 const changePageTitle = function () {
     const pageTitle = document.querySelector("h1");
     verifyDOMElementExisteOrError(pageTitle);
-    const newTitle = "UPDATE REGISTER ";
     pageTitle.textContent = newTitle + "#" + registerId;
 };
 if (isUpdateMode) {
@@ -49,11 +48,11 @@ const uploadData = async function () {
     let backendResponse = null;
     if (isUpdateMode) {
         const id = parseInt(registerId);
-        sendDataUpdateRegister(id, data)
+        await sendDataUpdateRegister(id, data)
             .then(response => backendResponse = response);
     }
     else {
-        sendDataCreateRegister(data)
+        await sendDataCreateRegister(data)
             .then(response => backendResponse = response);
     }
     showResponseMessage(backendResponse);

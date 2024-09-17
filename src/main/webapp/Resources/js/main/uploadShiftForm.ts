@@ -51,11 +51,11 @@ const uploadData = async function () {
     let backendResponse: Response | null = null;
     if (isUpdateMode) {
         const id = parseInt(registerId);
-        sendDataUpdateRegister(id, data)
+        await sendDataUpdateRegister(id, data)
             .then(response => backendResponse = response);
     }
     else {
-        sendDataCreateRegister(data)
+        await sendDataCreateRegister(data)
             .then(response => backendResponse = response);
     }
     showResponseMessage(backendResponse);
