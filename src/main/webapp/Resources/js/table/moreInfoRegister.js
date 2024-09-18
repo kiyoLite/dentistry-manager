@@ -11,7 +11,7 @@ const createWindow = function () {
     const windowHtml = ` <div id="background">
         <div id="title">
             SHIFT INFORMATION
-            <img src="../images/close(x).svg" alt="" id="buttonCloseWindow">
+            <img src="Resources/images/close(x).svg" alt="" id="buttonCloseWindow">
         </div>
         <div id="moreData">
             <ul>
@@ -25,7 +25,7 @@ const createWindow = function () {
                 </li>
                 <li>
                     <strong>scheduling</strong>
-                    <p id="scheduling"></p>
+                    <p id="schedulingDate"></p>
                 </li>
                 <li>
                     <strong>patient email</strong>
