@@ -25,8 +25,13 @@ public class SvgetShiftForTodayByDentist extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException { 
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String unformattedDentistId = request.getReader().readLine();
+         String unformattedDentistId = request.getReader().readLine();
         long dentistId = Long.parseLong(unformattedDentistId);
         ShiftDAOImp shiftDAO = new ShiftDAOImp();
         List<Shift> shiftsForToday = shiftDAO.getShiftForTodayByDentist(dentistId);
@@ -44,12 +49,6 @@ public class SvgetShiftForTodayByDentist extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         response.getWriter().write(responseJSON.toString());
-        
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
     }
 
     @Override
