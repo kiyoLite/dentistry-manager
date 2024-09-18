@@ -3,7 +3,7 @@ const getShiftInfoForTodayByDentist = function (dentistId: number) {
     return fetch(
         url,
         {
-            method: "GET",
+            method: "POST",
             headers: {
                 'Content-Type': 'text/plain'
             },
