@@ -3,7 +3,7 @@ const createToastWarning = function (toastMessage) {
     const toast = document.createElement("div");
     toast.innerHTML = `
         <div class="ContainerImage">
-            <img src="../../Resources/images/warningIcon.svg" alt="" class="Image">
+            <img src="Resources/images/warningIcon.svg" alt="" class="Image">
         </div>
         <div class="ContaienrText">
             <p class="Title">warning</p>

@@ -13,7 +13,7 @@ const createToastError = function (toastErrorMessage: toastMessage) {
     const toastError = document.createElement("div");
     toastError.innerHTML = `
         <div class="ContainerErrorImage">
-            <img src="../images/error.svg" alt="" class="ErrorImage">
+            <img src="Resources/images/error.svg" alt="" class="ErrorImage">
         </div>
         <div class="ContaienrErrorText">
             <p class="Title">${toastErrorMessage.title}</p>
