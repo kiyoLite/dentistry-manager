@@ -1,155 +1,155 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>shift manager</title>
-    <link rel="stylesheet" href="Resources/css/header.css">
-    <link rel="stylesheet" href="Resources/css/shiftManager.css">
-    <link rel="stylesheet" href="Resources/css/alert.css">
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>shift manager</title>
+        <link rel="stylesheet" href="Resources/css/header.css">
+        <link rel="stylesheet" href="Resources/css/shiftManager.css">
+        <link rel="stylesheet" href="Resources/css/alert.css">
+    </head>
 
-<body>
-    <header id="ContainerHedaer" class="Responsive">
-        <div>
-            <img src="Resources/images/teeth.svg" alt="">
-            <p>Dentistry manager</p>
-        </div>
-        <nav>
-            <p>signout</p>
-            <details id="ContainerMenu">
-                <summary>
-                    <img src="Resources/images/menu.svg" alt="">
-                </summary>
-                <div id="ContainerOptionsMenu">
+    <body>
+        <header id="ContainerHedaer" class="Responsive">
+            <div>
+                <img src="Resources/images/teeth.svg" alt="">
+                <p>Dentistry manager</p>
+            </div>
+            <nav>
+                <p>signout</p>
+                <details id="ContainerMenu">
+                    <summary>
+                        <img src="Resources/images/menu.svg" alt="">
+                    </summary>
+                    <div id="ContainerOptionsMenu">
 
-                           <a href="http://localhost:8080/DentistryManager/homepage.html" id="HomePageLink">home page</a>
-                    <a href="http://localhost:8080/DentistryManager/shiftManager.html" id="ShiftLink">shift</a>
-                    <a href="http://localhost:8080/DentistryManager/shiftToday.html" id="DentistLink">dentist</a>
-                </div>
-            </details>
+                        <a href="http://localhost:8080/DentistryManager/homepage.html" id="HomePageLink">home page</a>
+                        <a href="http://localhost:8080/DentistryManager/shiftManager.html" id="ShiftLink">shift</a>
+                        <a href="http://localhost:8080/DentistryManager/shiftToday.html" id="DentistLink">dentist</a>
+                    </div>
+                </details>
+            </nav>
+        </header>
+        <nav id="SearchRegister" class="Responsive">
+            <p>search by</p>
+            <div>
+
+                <select id="FilterBy" data-lastFilter="PREDETERMINED">
+                    <option value="PREDETERMINED" selected>default</option>
+                    <option value="PATIENTS">patient</option>
+                    <option value="DENTIST">dentist</option>
+                    <option value="SCHEDULING">scheduling</option>
+                    <option value="PRICE">price</option>
+
+                </select>
+                <form action="" id="ContainerSearchRegister">
+
+                    <input type="text" name="" id="SearchRegisterInput" placeholder="" data-lastSearch="">
+                    <img src="Resources/images/search.svg" alt="" id="searchButton">
+                </form>
+            </div>
         </nav>
-    </header>
-    <nav id="SearchRegister" class="Responsive">
-        <p>search by</p>
-        <div>
 
-            <select id="FilterBy" data-lastFilter="PREDETERMINED">
-                <option value="PREDETERMINED" selected>default</option>
-                <option value="PATIENTS">patient</option>
-                <option value="DENTIST">dentist</option>
-                <option value="SCHEDULING">scheduling</option>
-                <option value="PRICE">price</option>
+        <main class="Responsive">
+            <section id="ContainerTable">
+                <table id="TableShiftInfo">
+                    <colgroup>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                        <col>
+                    </colgroup>
 
-            </select>
-            <form action="" id="ContainerSearchRegister">
+                    <thead>
+                        <tr>
+                            <th>Patient</th>
+                            <th>Dentist</th>
+                            <th>Scheduling</th>
+                            <th>Contact</th>
+                            <th>Price</th>
+                            <th>More</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ContainerRegisters">
+                        <tr data-Id="101">
+                            <td>Sophia Rodriguez</td>
+                            <td>Dr. Isabella Garcia</td>
+                            <td>07-18-2024</td>
+                            <td>sophia.rodriguez@email.com</td>
+                            <td>85</td>
+                            <td>...</td>
+                        </tr>
+                        <tr data-Id="112">
+                            <td>Michael Brown</td>
+                            <td>Dr. William Chen</td>
+                            <td>08-09-2024</td>
+                            <td>michael.brown123@provider.net</td>
+                            <td>120</td>
+                            <td>...</td>
+                        </tr>
+                        <tr data-Id="102">
+                            <td>Aisha Khan</td>
+                            <td>Dr. David Lee</td>
+                            <td>06-21-2024</td>
+                            <td>akhan@yahoo.com</td>
+                            <td>50</td>
+                            <td>...</td>
+                        </tr>
+                        <tr data-Id="103">
+                            <td>David Miller</td>
+                            <td>Dr. Sarah Thompson</td>
+                            <td>09-12-2024</td>
+                            <td>david.miller78@hotmail.com</td>
+                            <td>150</td>
+                            <td>...</td>
+                        </tr>
+                        <tr data-Id="104">
+                            <td>Emily Jones</td>
+                            <td>Dr. Charles Edwards</td>
+                            <td>08-23-2024</td>
+                            <td>emily.jones@outlook.com</td>
+                            <td>70</td>
+                            <td>...</td>
+                        </tr>
+                        <tr data-Id="105">
+                            <td>Noah Garcia</td>
+                            <td>Dr. Olivia Patel</td>
+                            <td>08-01-2024</td>
+                            <td>noah.garcia@gmail.com</td>
+                            <td>90</td>
+                            <td>...</td>
+                        </tr>
+                    </tbody>
 
-                <input type="text" name="" id="SearchRegisterInput" placeholder="" data-lastSearch="">
-                <img src="Resources/images/search.svg" alt="" id="searchButton">
-            </form>
-        </div>
-    </nav>
+                </table>
 
-    <main class="Responsive">
-        <section id="ContainerTable">
-            <table id="TableShiftInfo">
-                <colgroup>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                    <col>
-                </colgroup>
+            </section>
+            <aside id="ContainerPaginationTable">
+                <button title="previous page" id="PreviousPage">
+                    <img src="Resources/images/previous.svg" alt="">
+                </button>
 
-                <thead>
-                    <tr>
-                        <th>Patient</th>
-                        <th>Dentist</th>
-                        <th>Scheduling</th>
-                        <th>Contact</th>
-                        <th>Price</th>
-                        <th>More</th>
-                    </tr>
-                </thead>
-                <tbody id="ContainerRegisters">
-                    <tr data-Id="101">
-                        <td>Sophia Rodriguez</td>
-                        <td>Dr. Isabella Garcia</td>
-                        <td>07-18-2024</td>
-                        <td>sophia.rodriguez@email.com</td>
-                        <td>85</td>
-                        <td>...</td>
-                    </tr>
-                    <tr data-Id="112">
-                        <td>Michael Brown</td>
-                        <td>Dr. William Chen</td>
-                        <td>08-09-2024</td>
-                        <td>michael.brown123@provider.net</td>
-                        <td>120</td>
-                        <td>...</td>
-                    </tr>
-                    <tr data-Id="102">
-                        <td>Aisha Khan</td>
-                        <td>Dr. David Lee</td>
-                        <td>06-21-2024</td>
-                        <td>akhan@yahoo.com</td>
-                        <td>50</td>
-                        <td>...</td>
-                    </tr>
-                    <tr data-Id="103">
-                        <td>David Miller</td>
-                        <td>Dr. Sarah Thompson</td>
-                        <td>09-12-2024</td>
-                        <td>david.miller78@hotmail.com</td>
-                        <td>150</td>
-                        <td>...</td>
-                    </tr>
-                    <tr data-Id="104">
-                        <td>Emily Jones</td>
-                        <td>Dr. Charles Edwards</td>
-                        <td>08-23-2024</td>
-                        <td>emily.jones@outlook.com</td>
-                        <td>70</td>
-                        <td>...</td>
-                    </tr>
-                    <tr data-Id="105">
-                        <td>Noah Garcia</td>
-                        <td>Dr. Olivia Patel</td>
-                        <td>08-01-2024</td>
-                        <td>noah.garcia@gmail.com</td>
-                        <td>90</td>
-                        <td>...</td>
-                    </tr>
-                </tbody>
-
-            </table>
-
-        </section>
-        <aside id="ContainerPaginationTable">
-            <button title="previous page" id="PreviousPage">
-                <img src="Resources/images/previous.svg" alt="">
-            </button>
-
-            <button title="next page" id="nextPage">
-                <img src="Resources/images/next.svg" alt="">
-            </button>
-        </aside>
-        <section id="ContainerButtons">
-            <a href="http://localhost:8080/DentistryManager/uploadShiftForm.html" id="updateRegisterButton"> update</a>
-            <a href="http://localhost:8080/DentistryManager/uploadShiftForm.html" id="CreateRegisterButton">
-                create
-            </a>
+                <button title="next page" id="nextPage">
+                    <img src="Resources/images/next.svg" alt="">
+                </button>
+            </aside>
+            <section id="ContainerButtons">
+                <a href="http://localhost:8080/DentistryManager/uploadShiftForm.html" id="updateRegisterButton"> update</a>
+                <a href="http://localhost:8080/DentistryManager/uploadShiftForm.html" id="CreateRegisterButton">
+                    create
+                </a>
 
 
-            <button id="DeleteRegisterButton" title="delete register">
-                <img src="Resources/images/garbage.svg" alt="">
-            </button>
-        </section>
+                <button id="DeleteRegisterButton" title="delete register">
+                    <img src="Resources/images/garbage.svg" alt="">
+                </button>
+            </section>
 
-    </main>
-    <script type="module" src="Resources/js/main/shiftManager.js"></script>
-</body>
+        </main>
+        <script type="module" src="Resources/js/main/shiftManager.js"></script>
+    </body>
 
 </html>
