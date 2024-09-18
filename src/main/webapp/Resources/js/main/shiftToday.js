@@ -5,8 +5,11 @@ import { sendEmailOrShowError } from "../timeLine/SendEmailAndShowMessage.js";
 import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
 const listDentistContainer = document.getElementById("SelectDentist");
 const SendEmailButton = document.getElementById("SendEmailButton");
-FillSelectElementWithDentists(listDentistContainer);
-changeTimeLine();
+const initialize = async function (){
+    await FillSelectElementWithDentists(listDentistContainer);
+    await changeTimeLine();
+}
+initialize()
 listDentistContainer?.addEventListener("change", changeTimeLine);
 SendEmailButton?.addEventListener("click", () => {
     const containerAllDentist = document.getElementById("SelectDentist");

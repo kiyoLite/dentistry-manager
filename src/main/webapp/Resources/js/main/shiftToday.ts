@@ -8,8 +8,14 @@ import { verifyDOMElementExisteOrError } from "../verify/existDomElement.js";
 const listDentistContainer = document.getElementById("SelectDentist") as HTMLSelectElement | null;
 const SendEmailButton = document.getElementById("SendEmailButton");
 
-FillSelectElementWithDentists(listDentistContainer!);
-changeTimeLine();
+
+const initialize = async function (){
+    await FillSelectElementWithDentists(listDentistContainer!);
+    await changeTimeLine();
+}
+initialize()
+
+
 
 listDentistContainer?.addEventListener("change", changeTimeLine);
 SendEmailButton?.addEventListener("click", () => {
